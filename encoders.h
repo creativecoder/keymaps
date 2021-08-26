@@ -99,7 +99,7 @@ bool encoder_update_user(uint8_t index, bool ccw) {
 
         }
     }
-    return true;
+    return false;
 }
 
 void matrix_scan_user(void) {

@@ -18,7 +18,7 @@
  */
 #include QMK_KEYBOARD_H
 
-enum layers { BASE, MBO, MEDIA, NAV, MOUSE, SCUTS, SYM, NUM, FUN };
+enum layers { BASE, FUN, MBO, MEDIA, MOUSE, NAV, NUM, SCUTS, SYM };
 
 bool is_app_switcher_active = false;
 uint16_t app_switcher_timer = 0;
@@ -29,6 +29,7 @@ uint8_t mod_state;
 #include "layout.h"
 
 #ifdef COMBO_ENABLE
+#include "g/keymap_combo.h"
 #include "combos.h"
 #endif
 
@@ -44,7 +45,7 @@ uint8_t mod_state;
 #include "tapdance.h"
 #endif
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 #include "oled.h"
 #endif
 
@@ -72,10 +73,10 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_kyria_3x5(
-      TD(Q_CTRL),        KC_W,              KC_F,              KC_P,              KC_B,                                                                                          KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,
-      LCTL_T(KC_A),      LALT_T(KC_R),      LGUI_T(KC_S),      LSFT_T(KC_T),      KC_G,                                                                                          KC_M,              RSFT_T(KC_N),      RGUI_T(KC_E),      RALT_T(KC_I),      RCTL_T(KC_O),
-      KC_Z,              ALGR_T(KC_X),      KC_C,              KC_D,              KC_V,              LT(NUM, U_NU),     U_NU,              LT(SCUTS, U_NU),   LT(NAV, U_NU),     KC_K,              KC_H,              KC_COMM,           ALGR_T(KC_DOT),    KC_SLSH,
-                                            RELEASE_LGUI,      LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(SCUTS, KC_TAB), LT(MOUSE, U_NU),   U_NU,              LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   KC_HOME
+      TD(Q_CTRL),        KC_W,              KC_F,              KC_P,              KC_B,                                                                                           KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,
+      LCTL_T(KC_A),      LALT_T(KC_R),      LGUI_T(KC_S),      LSFT_T(KC_T),      KC_G,                                                                                           KC_M,              RSFT_T(KC_N),      RGUI_T(KC_E),      RALT_T(KC_I),      RCTL_T(KC_O),
+      KC_Z,              ALGR_T(KC_X),      KC_C,              KC_D,              KC_V,              LT(FUN, KC_DEL),   LT(SYM, KC_ENT),    LT(SCUTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,              KC_H,              KC_COMM,           KC_DOT,            KC_SLSH,
+                                            RELEASE_LGUI,      LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(SCUTS, KC_TAB), LT(NUM, KC_BSPC),   LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   KC_ENT
     ),
     [NAV] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
@@ -89,23 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    EMICONS, SCRNSHT, SCRNREC, CLIPBRD, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_ENT,  KC_BSPC, KC_DEL,  U_NU
     ),
-    [MOUSE] = LAYOUT_kyria_3x5(
-      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
-      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, U_NU,
-      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R, U_NU,
-                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
-    ),
     [MEDIA] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, VIM_WQ,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC_MUTE, KC_MUTE
-    ),
-    [MBO] = LAYOUT_kyria_3x5(
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_TRNS,                                     KC_TRNS, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
-      U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,   U_NU,    U_NU,    U_NU,    U_NU,    U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
-                        U_NU,    KC_BTN2, KC_BTN3, KC_BTN1, U_NU,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
     ),
     [NUM] = LAYOUT_kyria_3x5(
       KC_PERC, KC_7,    KC_8,    KC_9,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
@@ -124,6 +113,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_PAUS,                                     U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
       KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_SLCK, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_APP,  KC_SPC,  KC_TAB,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
+    ),
+    [MOUSE] = LAYOUT_kyria_3x5(
+      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
+      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, U_NU,
+      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R, U_NU,
+                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
+    ),
+    [MBO] = LAYOUT_kyria_3x5(
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_TRNS,                                     KC_TRNS, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
+      U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,   U_NU,    U_NU,    U_NU,    U_NU,    U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
+                        U_NU,    KC_BTN2, KC_BTN3, KC_BTN1, U_NU,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
     ),
 };
 
