@@ -19,7 +19,6 @@ bool encoder_update_user(uint8_t index, bool ccw) {
     if (index == 0) {
         switch (get_highest_layer(layer_state)) {
             case NUM:
-            case SYM:
                 // Select next/previous window
                 if (ccw) {
                     tap_code16(LSG(KC_GRV));
@@ -35,12 +34,19 @@ bool encoder_update_user(uint8_t index, bool ccw) {
                     tap_code(KC_BRIU);
                 }
                 break;
-            default:
+            case SYM:
+                // Firefox tab switcher and VS Code file switcher
+                if (!is_app_switcher_active) {
+                    is_app_switcher_active = true;
+                    register_code(KC_LCTL);
+                }
+            case BASE:
                 // Select next/previous application
                 if (!is_app_switcher_active) {
                     is_app_switcher_active = true;
                     register_code(KC_LGUI);
                 }
+            default:
                 if (ccw) {
                     tap_code16(S(KC_TAB));
                 } else {
@@ -53,8 +59,15 @@ bool encoder_update_user(uint8_t index, bool ccw) {
     }
     else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
-            case SCUTS:
             case NAV:
+                // Up/down
+                if (ccw) {
+                    tap_code(KC_UP);
+                } else {
+                    tap_code(KC_DOWN);
+                }
+                break;
+            case SCUTS:
                 // Select next/previous tab
                 if (ccw) {
                     tap_code16(LSG(KC_LBRC));
@@ -103,7 +116,8 @@ bool encoder_update_user(uint8_t index, bool ccw) {
 }
 
 void matrix_scan_user(void) {
-    if (is_app_switcher_active && timer_elapsed(app_switcher_timer) > 1000) {
+    if (is_app_switcher_active && timer_elapsed(app_switcher_timer) > 2000) {
+        unregister_code(KC_LCTL);
         unregister_code(KC_LGUI);
         is_app_switcher_active = false;
         app_switcher_timer = 0;
