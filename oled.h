@@ -54,7 +54,7 @@ static void render_status(void) {
         case NAV:
             oled_write_P(PSTR("Nav\n"), false);
             break;
-        case SCUTS:
+        case SHCTS:
             oled_write_P(PSTR("Shortcuts\n"), false);
             break;
         case MOUSE:

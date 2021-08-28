@@ -67,7 +67,7 @@ bool encoder_update_user(uint8_t index, bool ccw) {
                     tap_code(KC_DOWN);
                 }
                 break;
-            case SCUTS:
+            case SHCTS:
                 // Select next/previous tab
                 if (ccw) {
                     tap_code16(LSG(KC_LBRC));

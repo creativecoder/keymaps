@@ -78,7 +78,7 @@ bool led_update_user(led_t led_state) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(1, layer_state_cmp(state, NAV));
-    rgblight_set_layer_state(2, layer_state_cmp(state, SCUTS));
+    rgblight_set_layer_state(2, layer_state_cmp(state, SHCTS));
     rgblight_set_layer_state(3, layer_state_cmp(state, MEDIA));
     rgblight_set_layer_state(4, layer_state_cmp(state, MOUSE));
     rgblight_set_layer_state(5, layer_state_cmp(state, NUM));
