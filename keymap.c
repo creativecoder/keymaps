@@ -56,6 +56,7 @@ uint8_t mod_state;
 #define U_UND LCMD(KC_Z)
 #define EMICONS LCTL(LGUI(KC_E))
 #define SCRNSHT LSG(KC_4)
+#define SCRNCLP C(LSG(KC_4))
 #define SCRNREC LSG(KC_5)
 #define CLIPBRD LAG(KC_BSLS)
 #define SNIPS LCAG(KC_SPC)
@@ -81,9 +82,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_ENT,  KC_BSPC, KC_DEL,  U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
-      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    U_NU,    U_NU,    U_NU,
+      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    U_NU,    U_NU,    CLIPBRD,
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  QT_RPLY, VIM_WQ,
-      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    EMICONS, SCRNSHT, SCRNREC, CLIPBRD, SNIPS,
+      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_ENT,  KC_BSPC, KC_DEL,  U_NU
     ),
     [MEDIA] = LAYOUT_kyria_3x5(
