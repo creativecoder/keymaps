@@ -20,9 +20,6 @@
 
 enum layers { BASE, FUN, MBO, MEDIA, MOUSE, NAV, NUM, SHCTS, SYM };
 
-bool is_app_switcher_active = false;
-uint16_t app_switcher_timer = 0;
-
 // Initialize variable holding the binary representation of active modifiers.
 uint8_t mod_state;
 
@@ -64,8 +61,7 @@ uint8_t mod_state;
 #define SNIPS LCAG(KC_SPC)
 
 enum custom_keycodes {
-    RLS_LCG = SAFE_RANGE,
-    CPY_URL,
+    CPY_URL = SAFE_RANGE,
     CPY_GO,
     QT_RPLY,
     VIM_WQ,
@@ -76,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TD(Q_CTRL),        KC_W,              KC_F,              KC_P,              KC_B,                                                                                           KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,
       LCTL_T(KC_A),      LALT_T(KC_R),      LGUI_T(KC_S),      LSFT_T(KC_T),      KC_G,                                                                                           KC_M,              RSFT_T(KC_N),      RGUI_T(KC_E),      RALT_T(KC_I),      RCTL_T(KC_O),
       KC_Z,              ALGR_T(KC_X),      KC_C,              KC_D,              KC_V,              LT(FUN, KC_DEL),   LT(SYM, KC_ENT),    LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,              KC_H,              KC_COMM,           KC_DOT,            KC_SLSH,
-                                            RLS_LCG,           LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC),   LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   KC_ENT
+                                            KC_ENT,            LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC),   LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   KC_ENT
     ),
     [NAV] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
@@ -106,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_PIPE, KC_AMPR, KC_LCBR, KC_RCBR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
       KC_SCLN, KC_COLN, KC_LPRN, KC_RPRN, KC_AT,                                       U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
       KC_DLR,  KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
-                        RLS_LCG, KC_HASH, KC_EXLM, KC_UNDS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
+                        U_NU,    KC_HASH, KC_EXLM, KC_UNDS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [FUN] = LAYOUT_kyria_3x5(
       KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
@@ -133,14 +129,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mod_state = get_mods();
 
     switch (keycode) {
-        case RLS_LCG:
-            if (record->event.pressed && is_app_switcher_active) {
-                unregister_code(KC_LCTL);
-                unregister_code(KC_LGUI);
-                is_app_switcher_active = false;
-                app_switcher_timer = 0;
-            }
-            return true;
         case CPY_URL:
             if (record->event.pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {

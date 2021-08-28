@@ -34,25 +34,12 @@ bool encoder_update_user(uint8_t index, bool ccw) {
                     tap_code(KC_BRIU);
                 }
                 break;
-            case SYM:
-                // Firefox tab switcher and VS Code file switcher
-                if (!is_app_switcher_active) {
-                    is_app_switcher_active = true;
-                    register_code(KC_LCTL);
-                }
-            case BASE:
-                // Select next/previous application
-                if (!is_app_switcher_active) {
-                    is_app_switcher_active = true;
-                    register_code(KC_LGUI);
-                }
             default:
                 if (ccw) {
                     tap_code16(S(KC_TAB));
                 } else {
                     tap_code16(KC_TAB);
                 }
-                app_switcher_timer = timer_read();
                 break;
 
         }
@@ -113,13 +100,4 @@ bool encoder_update_user(uint8_t index, bool ccw) {
         }
     }
     return false;
-}
-
-void matrix_scan_user(void) {
-    if (is_app_switcher_active && timer_elapsed(app_switcher_timer) > 2000) {
-        unregister_code(KC_LCTL);
-        unregister_code(KC_LGUI);
-        is_app_switcher_active = false;
-        app_switcher_timer = 0;
-    }
 }
