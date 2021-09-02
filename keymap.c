@@ -179,6 +179,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 del_mods(mod_state);
                 tap_code16(U_CPY);
                 tap_code16(KC_GT);
+                SEND_STRING(SS_DELAY(200));
                 tap_code16(U_PST);
                 SEND_STRING(SS_DELAY(200));
                 tap_code16(S(KC_ENT));
