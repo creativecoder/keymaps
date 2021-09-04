@@ -39,6 +39,12 @@
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
 
+// Allow pluging in keyboard from either side.
+// https://docs.qmk.fm/#/config_options?id=setting-handedness
+// Use `qmk flash -kb splitkb/kyria/rev1 -km creativecoder -e MAKE_TARGET=dfu-split-{left|right}`
+// to flash each side
+#define EE_HANDS
+
 #ifdef COMBO_ENABLE
 #    define COMBO_TERM 20
 #    define COMBO_STRICT_TIMER

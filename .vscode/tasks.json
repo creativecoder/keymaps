@@ -1,0 +1,18 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Kyria flash left side",
+      "type": "shell",
+      "command": "qmk flash -kb splitkb/kyria/rev1 -km creativecoder -e MAKE_TARGET=dfu-split-left"
+    },
+    {
+      "label": "Kyria flash right side",
+      "type": "shell",
+      "command": "qmk flash -kb splitkb/kyria/rev1 -km creativecoder -e MAKE_TARGET=dfu-split-right",
+      "problemMatcher": []
+    }
+  ]
+}
