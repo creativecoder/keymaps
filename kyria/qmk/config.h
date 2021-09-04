@@ -40,43 +40,46 @@
 #define QMK_KEYS_PER_SCAN 4
 
 #ifdef COMBO_ENABLE
-    #define COMBO_TERM 20
-    #define COMBO_STRICT_TIMER
-    #define COMBO_MUST_TAP_PER_COMBO
+#    define COMBO_TERM 20
+#    define COMBO_STRICT_TIMER
+#    define COMBO_MUST_TAP_PER_COMBO
 #endif
 
 #ifdef ENCODER_ENABLE
-    // Alps EC11K1524406 encoder uses a smaller resolution
-    #define ENCODER_RESOLUTION 2
+// Alps EC11K1524406 encoder uses a smaller resolution
+#    define ENCODER_RESOLUTION 2
+// Reverse encoder direction so `clockwise` parameter is correct
+#    define ENCODER_DIRECTION_FLIP
 #endif
 
 #ifdef MOUSEKEY_ENABLE
-    // Mouse key speed and acceleration.
-    #define MOUSEKEY_DELAY          0
-    #define MOUSEKEY_INTERVAL       16
-    #define MOUSEKEY_WHEEL_DELAY    0
-    #define MOUSEKEY_MAX_SPEED      6
-    #define MOUSEKEY_TIME_TO_MAX    64
+// Mouse key speed and acceleration.
+#    define MOUSEKEY_DELAY 0
+#    define MOUSEKEY_INTERVAL 16
+#    define MOUSEKEY_WHEEL_DELAY 0
+#    define MOUSEKEY_MAX_SPEED 6
+#    define MOUSEKEY_TIME_TO_MAX 64
 #endif
 
 #ifdef OLED_DRIVER_ENABLE
-    #define OLED_DISPLAY_128X64
-    #define OLED_BRIGHTNESS 120
+#    define OLED_DISPLAY_128X64
+#    define OLED_BRIGHTNESS 120
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-    #undef RGBLED_SPLIT
-    #define RGBLED_SPLIT { 8, 8 }
-    #undef RGBLED_NUM
-    #define RGBLED_NUM 16
-    #define RGBLIGHT_SLEEP
-    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-    #define RGBLIGHT_HUE_STEP 8
-    #define RGBLIGHT_SAT_STEP 8
-    #define RGBLIGHT_VAL_STEP 8
-    #define RGBLIGHT_LIMIT_VAL 150
-    #define RGBLIGHT_LAYERS
-    #define RGBLIGHT_LAYERS_RETAIN_VAL
+#    undef RGBLED_SPLIT
+#    define RGBLED_SPLIT \
+        { 8, 8 }
+#    undef RGBLED_NUM
+#    define RGBLED_NUM 16
+#    define RGBLIGHT_SLEEP
+#    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#    define RGBLIGHT_HUE_STEP 8
+#    define RGBLIGHT_SAT_STEP 8
+#    define RGBLIGHT_VAL_STEP 8
+#    define RGBLIGHT_LIMIT_VAL 150
+#    define RGBLIGHT_LAYERS
+#    define RGBLIGHT_LAYERS_RETAIN_VAL
 #endif
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
