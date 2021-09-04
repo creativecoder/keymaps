@@ -16,7 +16,7 @@
 
 // Tap Dance keycodes
 enum td_keycodes {
-    Q_CTRL // "q" when tapped, tap Ctrl when double tapped
+    Q_CTRL  // "q" when tapped, tap Ctrl when double tapped
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {

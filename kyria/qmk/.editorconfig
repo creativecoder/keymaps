@@ -1,19 +1,42 @@
-; EditorConfig is awesome: http://EditorConfig.org
-
+# EditorConfig helps developers define and maintain consistent coding styles between different editors and IDEs
 # editorconfig.org
+
 root = true
 
 [*]
-indent_style = tab
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
 indent_style = space
 indent_size = 4
 
-; It is acceptable and often preferred to leave certain EditorConfig properties unspecified.
-; For example tab_width need not be specified unless it differs from the value of indent_size.
-; Also when indent_style is set to tab it may be desirable to leave indent_size unspecified
-; so readers may view the file using their preferred indentation format. Additionally if a property
-; is not standardized in your project (end_of_line for example) it may be best to leave it blank.
+# We recommend you to keep these unchanged
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+indent_size = 4
+
+[{qmk,*.py}]
+charset = utf-8
+max_line_length = 200
+
+# Make these match what we have in .gitattributes
+[*.mk]
+end_of_line = lf
+indent_style = tab
+
+[Makefile]
+end_of_line = lf
+indent_style = tab
+
+[*.sh]
+end_of_line = lf
+
+# The gitattributes file will handle the line endings conversion properly according to the operating system settings for other files
+
+
+# We don't have gitattributes properly for these
+# So if the user have for example core.autocrlf set to true
+# the line endings would be wrong.
+[lib/**]
+end_of_line = unset

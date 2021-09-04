@@ -26,28 +26,28 @@ uint8_t mod_state;
 #include "layout.h"
 
 #ifdef COMBO_ENABLE
-#include "g/keymap_combo.h"
-#include "combos.h"
+#    include "g/keymap_combo.h"
+#    include "combos.h"
 #endif
 
 #ifdef ENCODER_ENABLE
-#include "encoders.h"
+#    include "encoders.h"
 #endif
 
 #ifdef RGBLIGHT_LAYERS
-#include "rgb_layers.h"
+#    include "rgb_layers.h"
 #endif
 
 #ifdef TAP_DANCE_ENABLE
-#include "tapdance.h"
+#    include "tapdance.h"
 #endif
 
 #ifdef OLED_ENABLE
-#include "oled.h"
+#    include "oled.h"
 #endif
 
-#define U_NA KC_NO // present but not available for use
-#define U_NU KC_NO // available but not used
+#define U_NA KC_NO  // present but not available for use
+#define U_NU KC_NO  // available but not used
 
 #define U_RDO SCMD(KC_Z)
 #define U_PST LCMD(KC_V)
@@ -68,6 +68,8 @@ enum custom_keycodes {
     VIM_SR,
     VIM_WQ,
 };
+
+// clang-format off
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_kyria_3x5(
@@ -125,6 +127,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    KC_BTN2, KC_BTN3, KC_BTN1, U_NU,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
     ),
 };
+
+// clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Store the current modifier state in the variable for later reference
@@ -190,10 +194,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case VIM_SR:
             if (record->event.pressed) {
-              del_mods(mod_state);
-              tap_code(KC_ESC);
-              SEND_STRING(":%s/");
-              set_mods(mod_state);
+                del_mods(mod_state);
+                tap_code(KC_ESC);
+                SEND_STRING(":%s/");
+                set_mods(mod_state);
             }
             return false;
         case VIM_WQ:

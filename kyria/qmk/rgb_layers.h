@@ -14,57 +14,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-const rgblight_segment_t PROGMEM capslock_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 3, HSV_RED},      // Light 3 LEDs, starting with LED 0
-    {8, 3, HSV_RED}       // Light 3 LEDs, starting with LED 8 (1st LED on 2nd half)
+const rgblight_segment_t PROGMEM capslock_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({0, 3, HSV_RED},  // Light 3 LEDs, starting with LED 0
+                                                                                {8, 3, HSV_RED}   // Light 3 LEDs, starting with LED 8 (1st LED on 2nd half)
 );
 
-const rgblight_segment_t PROGMEM nav_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {5, 3, HSV_MAGENTA},  // Light the last 3 LEDs on the 1st half
-    {13, 3, HSV_MAGENTA}  // Lighe the last 3 LEDs on the 2nd half
+const rgblight_segment_t PROGMEM nav_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({5, 3, HSV_MAGENTA},  // Light the last 3 LEDs on the 1st half
+                                                                           {13, 3, HSV_MAGENTA}  // Lighe the last 3 LEDs on the 2nd half
 );
 
-const rgblight_segment_t PROGMEM shortcuts_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {5, 3, HSV_GREEN},
-    {13, 3, HSV_GREEN}
-);
+const rgblight_segment_t PROGMEM shortcuts_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({5, 3, HSV_GREEN}, {13, 3, HSV_GREEN});
 
-const rgblight_segment_t PROGMEM media_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {5, 3, HSV_YELLOW},
-    {13, 3, HSV_YELLOW}
-);
+const rgblight_segment_t PROGMEM media_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({5, 3, HSV_YELLOW}, {13, 3, HSV_YELLOW});
 
-const rgblight_segment_t PROGMEM mouse_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {5, 3, HSV_TEAL},
-    {13, 3, HSV_TEAL}
-);
+const rgblight_segment_t PROGMEM mouse_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({5, 3, HSV_TEAL}, {13, 3, HSV_TEAL});
 
-const rgblight_segment_t PROGMEM num_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {5, 3, HSV_BLUE},
-    {13, 3, HSV_BLUE}
-);
+const rgblight_segment_t PROGMEM num_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({5, 3, HSV_BLUE}, {13, 3, HSV_BLUE});
 
-const rgblight_segment_t PROGMEM sym_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {5, 3, HSV_PURPLE},
-    {13, 3, HSV_PURPLE}
-);
+const rgblight_segment_t PROGMEM sym_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({5, 3, HSV_PURPLE}, {13, 3, HSV_PURPLE});
 
-const rgblight_segment_t PROGMEM fun_layer_led[] = RGBLIGHT_LAYER_SEGMENTS(
-    {5, 3, HSV_ORANGE},
-    {13, 3, HSV_ORANGE}
-);
+const rgblight_segment_t PROGMEM fun_layer_led[] = RGBLIGHT_LAYER_SEGMENTS({5, 3, HSV_ORANGE}, {13, 3, HSV_ORANGE});
 
 // Now define the array of layers. Later layers take precedence.
-const rgblight_segment_t* const PROGMEM kyria_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    capslock_layer_led,
-    nav_layer_led,
-    shortcuts_layer_led,
-    media_layer_led,
-    mouse_layer_led,
-    num_layer_led,
-    sym_layer_led,
-    fun_layer_led
-);
+const rgblight_segment_t* const PROGMEM kyria_rgb_layers[] = RGBLIGHT_LAYERS_LIST(capslock_layer_led, nav_layer_led, shortcuts_layer_led, media_layer_led, mouse_layer_led, num_layer_led, sym_layer_led, fun_layer_led);
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers

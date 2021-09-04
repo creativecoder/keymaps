@@ -14,9 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-	return OLED_ROTATION_180;
-}
+oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }
+
+// clang-format off
 
 static void render_kyria_logo(void) {
     static const char PROGMEM kyria_logo[] = {
@@ -39,6 +39,8 @@ static void render_qmk_logo(void) {
 
   oled_write_P(qmk_logo, false);
 }
+
+// clang-format on
 
 static void render_status(void) {
     // QMK Logo and version information
@@ -85,7 +87,7 @@ static void render_status(void) {
 
 void oled_task_user(void) {
     if (is_keyboard_master()) {
-        render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
+        render_status();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         render_kyria_logo();
     }
