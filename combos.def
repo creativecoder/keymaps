@@ -1,0 +1,32 @@
+/* Copyright 2021 Grant M. Kinney
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+COMB(BACK, LGUI(KC_LBRC), RSFT_T(KC_N), RGUI_T(KC_E))
+COMB(FORWARD, LGUI(KC_RBRC), RGUI_T(KC_E), RALT_T(KC_I))
+COMB(PREV_TAB, LSG(KC_LBRC), KC_L, KC_U)
+COMB(NEXT_TAB, LSG(KC_RBRC), KC_U, KC_Y)
+COMB(PREV_TERM_TAB, LSA(KC_LBRC), KC_H, KC_COMM)
+COMB(NEXT_TERM_TAB, LSA(KC_RBRC), KC_COMM, KC_DOT)
+COMB(NEXT_WINDOW, LGUI(KC_TILD), RALT_T(KC_I), RCTL_T(KC_O))
+COMB(CLOSE_TAB, LGUI(KC_W), KC_Y, KC_QUOT)
+COMB(SHOW_DESKTOP, KC_F11, RSFT_T(KC_N), RCTL_T(KC_O))
+COMB(MISSION_CONTROL, LCTL(KC_UP), KC_L, KC_QUOT)
+COMB(APP_WINDOWS, LCTL(KC_DOWN), KC_H, KC_SLSH)
+COMB(SPACE_LEFT, LCTL(KC_LEFT), KC_K, KC_H)
+COMB(SPACE_RIGHT, LCTL(KC_RGHT), KC_DOT, KC_SLSH)
+COMB(NOTIFICATION_CENTER, LCAG(KC_LEFT), KC_QUOT, KC_SLSH)
+COMB(ZOOM_IN, LGUI(KC_EQL), KC_J, KC_L)
+COMB(ZOOM_OUT, LGUI(KC_MINS), KC_M, RSFT_T(KC_N))
