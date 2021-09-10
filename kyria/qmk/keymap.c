@@ -97,15 +97,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC_MUTE, KC_MUTE
     ),
     [NUM] = LAYOUT_kyria_3x5(
-      KC_PERC, KC_7,    KC_8,    KC_9,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
+      KC_CIRC, KC_7,    KC_8,    KC_9,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
       KC_EQL,  KC_4,    KC_5,    KC_6,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
       KC_DOT,  KC_1,    KC_2,    KC_3,    KC_PLUS, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_EXLM, KC_0,    KC_MINS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [SYM] = LAYOUT_kyria_3x5(
-      KC_PIPE, KC_AMPR, KC_LCBR, KC_RCBR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
-      KC_SCLN, KC_COLN, KC_LPRN, KC_RPRN, KC_AT,                                       U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
-      KC_DLR,  KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+      KC_TILD, KC_LCBR, KC_RCBR, KC_AMPR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
+      KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, KC_AT,                                       U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
+      KC_PERC, KC_LBRC, KC_RBRC, KC_DLR,  KC_PIPE, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_HASH, KC_GRV,  KC_UNDS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [FUN] = LAYOUT_kyria_3x5(

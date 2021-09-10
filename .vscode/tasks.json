@@ -6,7 +6,8 @@
     {
       "label": "Kyria flash left side",
       "type": "shell",
-      "command": "qmk flash -kb splitkb/kyria/rev1 -km creativecoder -e MAKE_TARGET=dfu-split-left"
+      "command": "qmk flash -kb splitkb/kyria/rev1 -km creativecoder -e MAKE_TARGET=dfu-split-left",
+      "problemMatcher": []
     },
     {
       "label": "Kyria flash right side",
