@@ -64,8 +64,8 @@ uint8_t mod_state;
 enum custom_keycodes {
     CPY_URL = SAFE_RANGE,
     CPY_GO,
+    CPY_SRC,
     QT_RPLY,
-    VIM_SR,
     VIM_WQ,
 };
 
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    U_NU,    QT_RPLY, CLIPBRD,
-      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  VIM_SR,  VIM_WQ,
+      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRC, VIM_WQ,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_BSPC, KC_DEL,  U_NU
     ),
@@ -155,6 +155,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     tap_code(KC_L);
                     tap_code(KC_C);
                     unregister_code(KC_LGUI);
+                    SEND_STRING(SS_DELAY(100));
                     tap_code(KC_ESC);
                     set_mods(mod_state);
                 }
@@ -162,18 +163,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case CPY_GO:
             if (record->event.pressed) {
+                del_mods(mod_state);
+                register_code(KC_LGUI);
+                tap_code(KC_C);
+                tap_code(KC_T);
+                tap_code(KC_V);
+                unregister_code(KC_LGUI);
+                tap_code(KC_ENT);
+                set_mods(mod_state);
+            }
+            return false;
+        case CPY_SRC:
+            if (record->event.pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
                     del_mods(mod_state);
                     tap_code16(U_CPY);
                     tap_code(KC_LCTL);
-                    SEND_STRING(SS_DELAY(200) SS_TAP(X_TAB) "ddg");
+                    SEND_STRING(SS_DELAY(200));
                     tap_code(KC_ENT);
                     set_mods(mod_state);
                 } else {
                     del_mods(mod_state);
                     tap_code16(U_CPY);
                     tap_code(KC_LCTL);
-                    SEND_STRING(SS_DELAY(200));
+                    SEND_STRING(SS_DELAY(200) SS_TAP(X_TAB) "ddg");
                     tap_code(KC_ENT);
                     set_mods(mod_state);
                 }
@@ -183,20 +196,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 del_mods(mod_state);
                 tap_code16(U_CPY);
+                SEND_STRING(SS_DELAY(200));
                 tap_code16(KC_GT);
                 SEND_STRING(SS_DELAY(200));
                 tap_code16(U_PST);
                 SEND_STRING(SS_DELAY(200));
                 tap_code16(S(KC_ENT));
                 tap_code16(LSG(KC_9));
-                set_mods(mod_state);
-            }
-            return false;
-        case VIM_SR:
-            if (record->event.pressed) {
-                del_mods(mod_state);
-                tap_code(KC_ESC);
-                SEND_STRING(":%s/");
                 set_mods(mod_state);
             }
             return false;
