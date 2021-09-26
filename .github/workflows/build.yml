@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: kyria_left_nice_nano_v2.uf2
+          path: ./kyria/zmk/kyria_left_nice_nano_v2.uf2
       - name: West Build (Kyria Right)
         run: west build --pristine -s zmk/app -b nice_nano_v2 -- -DSHIELD=kyria_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/kyria/zmk/config"
 
@@ -61,4 +61,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: kyria_right_nice_nano_v2.uf2
+          path: ./kyria/zmk/kyria_right_nice_nano_v2.uf2
