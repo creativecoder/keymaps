@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:2.5
+    defaults:
+      run:
+        working-directory: ./kyria/zmk
     name: Build
     steps:
       - name: Checkout
@@ -17,20 +20,20 @@ jobs:
           cache-name: cache-zephyr-modules
         with:
           path: |
-            kyria/zmk/modules/
-            kyria/zmk/tools/
-            kyria/zmk/zephyr/
-            kyria/zmk/bootloader/
-            kyria/zmk/zmk/
+            modules/
+            tools/
+            zephyr/
+            bootloader/
+            zmk/
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('manifest-dir/west.yml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: West Init
-        run: west init -l kyria/zmk/config
+        run: west init -l config
       - name: West Update
-        run: cd kyria/zmk && west update
+        run: west update
       - name: West Zephyr export
         run: west zephyr-export
       - name: West Build (Kyria Left)
