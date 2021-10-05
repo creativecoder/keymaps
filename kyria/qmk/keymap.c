@@ -54,7 +54,7 @@ uint8_t mod_state;
 #define U_CPY LCMD(KC_C)
 #define U_CUT LCMD(KC_X)
 #define U_UND LCMD(KC_Z)
-#define EMICONS LCTL(LGUI(KC_E))
+#define EMICONS LCTL(LCAG(KC_E))
 #define SCRNSHT LSG(KC_4)
 #define SCRNCLP C(LSG(KC_4))
 #define SCRNREC LSG(KC_5)
@@ -98,8 +98,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUM] = LAYOUT_kyria_3x5(
       KC_CIRC, KC_7,    KC_8,    KC_9,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
-      KC_EQL,  KC_4,    KC_5,    KC_6,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
-      KC_DOT,  KC_1,    KC_2,    KC_3,    KC_PLUS, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+      KC_EQL,  KC_1,    KC_2,    KC_3,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
+      KC_DOT,  KC_4,    KC_5,    KC_6,    KC_PLUS, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_EXLM, KC_0,    KC_MINS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [SYM] = LAYOUT_kyria_3x5(
@@ -110,8 +110,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [FUN] = LAYOUT_kyria_3x5(
       KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
-      KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_PAUS,                                     U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
-      KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_SLCK, KC_DEL,  KC_ENT,  U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+      KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS,                                     U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
+      KC_F10,  KC_F4,   KC_F5,   KC_F6,   KC_SLCK, KC_DEL,  KC_ENT,  U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_APP,  KC_SPC,  KC_TAB,  KC_BSPC, U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [MOUSE] = LAYOUT_kyria_3x5(
