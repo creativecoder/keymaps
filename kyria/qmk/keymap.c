@@ -25,6 +25,8 @@ uint8_t mod_state;
 
 #include "layout.h"
 
+#include "casemodes.h"  // https://github.com/andrewjrae/kyria-keymap#case-modes
+
 #ifdef COMBO_ENABLE
 #    include "g/keymap_combo.h"
 #    include "combos.h"
@@ -62,11 +64,13 @@ uint8_t mod_state;
 #define SNIPS LCAG(KC_SPC)
 
 enum custom_keycodes {
-    CPY_URL = SAFE_RANGE,
+    CAPSWRD = SAFE_RANGE,
+    CPY_URL,
     CPY_GO,
     CPY_SRC,
     QT_RPLY,
     VIM_WQ,
+    XCASE,
 };
 
 // clang-format off
@@ -80,8 +84,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NAV] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
-      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
-      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        CAPSWRD, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
+      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  XCASE, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_BSPC, KC_DEL,  U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
@@ -99,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NUM] = LAYOUT_kyria_3x5(
       KC_CIRC, KC_7,    KC_8,    KC_9,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
       KC_EQL,  KC_1,    KC_2,    KC_3,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,
-      KC_DOT,  KC_4,    KC_5,    KC_6,    KC_PLUS, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+      KC_DOT,  KC_4,    KC_5,    KC_6,    KC_PLUS, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_EXLM, KC_0,    KC_MINS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [SYM] = LAYOUT_kyria_3x5(
@@ -131,10 +135,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // Process case modes
+    if (!process_case_modes(keycode, record)) {
+        return false;
+    }
+
     // Store the current modifier state in the variable for later reference
     mod_state = get_mods();
 
     switch (keycode) {
+        case CAPSWRD:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_MASK_SHIFT) {
+                    tap_code(KC_CAPSLOCK);
+                    return true;
+                } else {
+                    enable_caps_word();
+                }
+            }
+            return false;
+        case XCASE:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_MASK_SHIFT) {
+                    enable_caps_word();
+                }
+
+                if ((get_mods() & MOD_BIT(KC_LCTL)) == MOD_BIT(KC_LCTL)) {
+                    // CamelCase
+                    enable_xcase_with(OSM(MOD_LSFT));
+                } else if (get_mods() & MOD_MASK_GUI) {
+                    // kebab-case
+                    enable_xcase_with(KC_MINS);
+                } else {
+                    // snake_case
+                    enable_xcase_with(KC_UNDS);
+                }
+            }
+            return false;
         case CPY_URL:
             if (record->event.pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
