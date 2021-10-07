@@ -133,8 +133,12 @@ __attribute__((weak)) bool terminate_case_modes(uint16_t keycode, const keyrecor
         case KC_MINS:
         case KC_UNDS:
         case KC_BSPC:
-            // If mod chording disable the mods
-            if (record->event.pressed && (get_mods() != 0)) {
+            // If mod chording other than shift, disable the mods
+            if (record->event.pressed &&
+                // Some mods are pressed
+                get_mods() != 0 &&
+                // Neither shift mod is pressed
+                (get_mods() & MOD_MASK_SHIFT) == 0) {
                 return true;
             }
             break;
