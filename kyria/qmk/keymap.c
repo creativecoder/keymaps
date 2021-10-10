@@ -67,7 +67,7 @@ enum custom_keycodes {
     CAPSWRD = SAFE_RANGE,
     CPY_URL,
     CPY_GO,
-    CPY_SRC,
+    CPY_SRH,
     QT_RPLY,
     VIM_WQ,
     XCASE,
@@ -85,12 +85,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NAV] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        CAPSWRD, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
-      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  XCASE, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  XCASE,   KC_HOME, KC_PGDN, KC_PGUP, KC_END,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    U_NU,    QT_RPLY, CLIPBRD,
-      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRC, VIM_WQ,
+      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRH, VIM_WQ,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
@@ -191,6 +191,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CPY_URL:
             if (record->event.pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
+                    // Copy current url in browser and open in a new tab
                     // Temporarily cancel existing modifiers, including both shifts
                     del_mods(mod_state);
                     register_code(KC_LGUI);
@@ -203,6 +204,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     // Reapplying modifier state so that the held shift key(s) still work
                     set_mods(mod_state);
                 } else {
+                    // Copy current browser url to clipboard
                     del_mods(mod_state);
                     register_code(KC_LGUI);
                     tap_code(KC_L);
@@ -216,6 +218,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case CPY_GO:
             if (record->event.pressed) {
+                // Paste currently highlighted text in browser into a new tab
                 del_mods(mod_state);
                 register_code(KC_LGUI);
                 tap_code(KC_C);
@@ -226,9 +229,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_mods(mod_state);
             }
             return false;
-        case CPY_SRC:
+        case CPY_SRH:
             if (record->event.pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
+                    // Use Launchbar to search web for highlighted text
                     del_mods(mod_state);
                     tap_code16(U_CPY);
                     tap_code(KC_LCTL);
@@ -236,6 +240,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     tap_code(KC_ENT);
                     set_mods(mod_state);
                 } else {
+                    // Use Launchbar to go to highlighted url
                     del_mods(mod_state);
                     tap_code16(U_CPY);
                     tap_code(KC_LCTL);
@@ -246,6 +251,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         case QT_RPLY:
+            // Quote highlighted text and start a reply in Slack
             if (record->event.pressed) {
                 del_mods(mod_state);
                 tap_code16(U_CPY);
@@ -260,6 +266,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         case VIM_WQ:
+            // Save changes and quit vim
             if (record->event.pressed) {
                 del_mods(mod_state);
                 tap_code(KC_ESC);

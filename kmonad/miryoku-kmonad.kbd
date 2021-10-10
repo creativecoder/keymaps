@@ -1,0 +1,142 @@
+;; keymap/user/manna-harbour/miryoku/readme.org
+
+(defcfg
+  input  (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+  fallthrough false
+  allow-cmd true
+)
+
+(defsrc
+  2     3     4     5     6                 8     9     0     -     =
+  q     w     e     r     t                 i     o     p     [     ]
+  caps  a     s     d     f           j     k     l     ;     '     ent
+              x     c     v     b     m     ,     .     /
+                                spc
+)
+
+;; sticky keys do not work with tap-hold, so using caps in place of one-shot shift :(
+(defalias
+  oss caps)
+
+(defalias
+  lf1 (tap-hold-next-release 200 t sft)
+  lf2 (tap-hold-next-release 200 s met)
+  lf3 (tap-hold-next-release 200 r alt)
+  lf4 (tap-hold-next-release 200 a ctl)
+  lf5 (tap-hold-next-release 200 x ralt)
+)
+
+(defalias
+  rf1 (tap-hold-next-release 200 n rsft)
+  rf2 (tap-hold-next-release 200 e rmet)
+  rf3 (tap-hold-next-release 200 i ralt)
+  rf4 (tap-hold-next-release 200 o rctl)
+  rf5 (tap-hold-next-release 200 . ralt)
+)
+
+(defalias
+  lt1 (tap-hold-next-release 200 tab (layer-toggle shct))
+  lt2 (tap-hold-next-release 200 spc (layer-toggle navr))
+  lt3 (tap-hold-next-release 200 esc (layer-toggle medr))
+)
+
+(defalias
+  rt1 (tap-hold-next-release 200 ent (layer-toggle sym))
+  rt2 (tap-hold-next-release 200 bspc (layer-toggle num))
+  rt3 (tap-hold-next-release 200 @oss (layer-toggle funl))
+)
+
+;; Instant send for Launchbar
+(defalias
+	q (multi-tap 200 q ctl)
+)
+
+(deflayer base
+  @q    w     f     p     b                 j     l     u     y     '
+  @lf4  @lf3  @lf2  @lf1  g                 m     @rf1  @rf2  @rf3  @rf4
+  z     x     c     d     v           @lt1  k     h     ,     .     /
+              @lt3  @lt2  @lt1  @rt2  @lt2  @rt1  @rt2  @rt3
+                                spc
+)
+
+(defalias
+  cut M-z
+  copy M-c
+  pste M-v
+  undo M-z
+  redo S-M-z
+)
+
+(deflayer navr
+  XX    XX    XX    XX    XX                @redo @pste @copy @cut  @undo
+  ctl   alt   met   sft   XX                caps  left  down  up    rght
+  XX    ralt  XX    XX    XX          XX    ins   home  pgdn  pgup  end
+              XX    XX    XX    XX    XX    ent   del   bspc
+                                XX
+)
+
+(defalias
+  clpbrd M-A-\
+  cpygo #(@copy M-t @pste ent)
+  cpysrh #(@copy M-spc P200 d d g spc @pste ent esc)
+  cpyuri #(@copy M-spc P200 @pste ent)
+  cpyit (tap-hold 200 @cpysrh @cpyuri)
+  cpyurl #(M-l @copy P100 esc)
+  duptab #(M-l @copy M-t @pste ent)
+  url (tap-hold 200 @cpyurl @duptab)
+  emicns C-A-M-e
+  qtrply #(@copy P200 > P200 @pste P200 S-ent S-M-9)
+  scrncl S-M-C-4
+  scrnrc S-M-5
+  scrnsh S-M-4
+  snips C-A-M-spc
+  vimwq #(esc : w q ent)
+)
+
+(deflayer shct
+  XX    XX    XX    XX    XX                XX      XX      XX      @qtrply @clpbrd
+  ctl   alt   met   sft   XX                spc     @url    @cpygo  @cpyit  @vimwq
+  XX    ralt  XX    XX    XX          XX    @emicns @scrnsh @scrncl @scrnrc @snips
+              XX    XX    XX    XX    XX    ent     del     bspc
+                                XX
+)
+
+(defalias
+  prev previoussong
+  next nextsong
+  pp playpause
+  stop stopcd
+)
+
+(deflayer medr
+  XX    XX    XX    XX    XX                XX    XX    XX    XX    XX
+  ctl   alt   met   sft   XX                XX    @prev vold  volu  @next
+  XX    ralt  XX    XX    XX          XX    XX    XX    XX    XX    XX
+              XX    XX    XX    XX    XX    @stop @pp   mute
+                                XX
+)
+
+(deflayer num
+  ^     7      8    9     /                 XX    XX    XX    XX    XX
+  =     1     2     3     *                 XX    sft   met   alt   ctl
+  .     4     5     6     +           XX    XX    XX    XX    ralt  XX
+              !     0     -     XX    XX    XX    XX    XX
+                                XX
+)
+
+(deflayer sym
+  ~     {     }     &     \\                XX    XX    XX    XX    XX
+  :     \(    \)    ;     @                 XX    sft   met   alt   ctl
+  %     [     ]     $     |           XX    XX    XX    XX    ralt  XX
+              #     `     \_    XX    XX    XX    XX    XX
+                                XX
+)
+
+(deflayer funl
+  f12   f7    f8    f9    sysrq              XX    XX    XX    XX    XX
+  f11   f1    f2    f3    slck               XX    sft   met   alt   ctl
+  f10   f4    f5    f6    pause        XX    XX    XX    XX    ralt  XX
+              comp  spc   tab    XX    XX    XX    XX    XX
+                                 XX
+)
