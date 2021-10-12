@@ -133,6 +133,8 @@ __attribute__((weak)) bool terminate_case_modes(uint16_t keycode, const keyrecor
         case KC_MINS:
         case KC_UNDS:
         case KC_BSPC:
+        // Used for triggering one-shot shift
+        case KC_LSFT:
             // If mod chording other than shift, disable the mods
             if (record->event.pressed &&
                 // Some mods are pressed
