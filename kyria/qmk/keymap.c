@@ -40,10 +40,6 @@ uint8_t mod_state;
 #    include "rgb_layers.h"
 #endif
 
-#ifdef TAP_DANCE_ENABLE
-#    include "tapdance.h"
-#endif
-
 #ifdef OLED_ENABLE
 #    include "oled.h"
 #endif
@@ -77,7 +73,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_kyria_3x5(
-      TD(Q_CTRL),        KC_W,              KC_F,              KC_P,              KC_B,                                                                                           KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,
+      KC_Q,              KC_W,              KC_F,              KC_P,              KC_B,                                                                                           KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,
       LCTL_T(KC_A),      LALT_T(KC_R),      LGUI_T(KC_S),      LSFT_T(KC_T),      KC_G,                                                                                           KC_M,              RSFT_T(KC_N),      RGUI_T(KC_E),      RALT_T(KC_I),      RCTL_T(KC_O),
       KC_Z,              ALGR_T(KC_X),      KC_C,              KC_D,              KC_V,              LT(FUN, KC_DEL),   LT(SYM, KC_ENT),    LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,              KC_H,              KC_COMM,           KC_DOT,            KC_SLSH,
                                             KC_ENT,            LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC),   LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_LSFT),  KC_ENT
@@ -89,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
-      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    U_NU,    QT_RPLY, CLIPBRD,
+      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    KC_LCTL, QT_RPLY, CLIPBRD,
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRH, VIM_WQ,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU

@@ -95,7 +95,7 @@
 )
 
 (deflayer shct
-  XX    XX    XX    XX    XX                XX      XX      XX      @qtrply @clpbrd
+  XX    XX    XX    XX    XX                XX      XX      ctl     @qtrply @clpbrd
   ctl   alt   met   sft   XX                spc     @url    @cpygo  @cpyit  @vimwq
   XX    ralt  XX    XX    XX          XX    @emicns @scrnsh @scrncl @scrnrc @snips
               XX    XX    XX    XX    XX    ent     del     bspc
