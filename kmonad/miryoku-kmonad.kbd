@@ -8,6 +8,7 @@
 )
 
 (defsrc
+  esc   f1    f2    f3    f4   f5  f6  f7   f8    f9    f10   f11   f12
   2     3     4     5     6                 8     9     0     -     =
   q     w     e     r     t                 i     o     p     [     ]
   caps  a     s     d     f           j     k     l     ;     '     ent
@@ -44,7 +45,7 @@
 (defalias
   rt1 (tap-hold-next-release 200 ent (layer-toggle sym))
   rt2 (tap-hold-next-release 200 bspc (layer-toggle num))
-  rt3 (tap-hold-next-release 200 @oss (layer-toggle funl))
+  rt3 (tap-hold-next-release 200 sft (layer-toggle funl))
 )
 
 ;; Instant send for Launchbar
@@ -53,6 +54,7 @@
 )
 
 (deflayer base
+  esc   slck  pause C-up  M-spc M-f5 C-M-d  prev  pp    next  mute  vold  volu
   @q    w     f     p     b                 j     l     u     y     '
   @lf4  @lf3  @lf2  @lf1  g                 m     @rf1  @rf2  @rf3  @rf4
   z     x     c     d     v           @lt1  k     h     ,     .     /
@@ -69,6 +71,7 @@
 )
 
 (deflayer navr
+  _     _     _     _     _    _   _   _    _     _     _     _     _
   XX    XX    XX    XX    XX                @redo @pste @copy @cut  @undo
   ctl   alt   met   sft   XX                caps  left  down  up    rght
   XX    ralt  XX    XX    XX          XX    ins   home  pgdn  pgup  end
@@ -95,6 +98,7 @@
 )
 
 (deflayer shct
+  _     _     _     _     _    _   _   _    _       _       _       _       _
   XX    XX    XX    XX    XX                XX      XX      ctl     @qtrply @clpbrd
   ctl   alt   met   sft   XX                spc     @url    @cpygo  @cpyit  @vimwq
   XX    ralt  XX    XX    XX          XX    @emicns @scrnsh @scrncl @scrnrc @snips
@@ -110,6 +114,7 @@
 )
 
 (deflayer medr
+  _     _     _     _     _    _   _   _    _     _     _     _     _
   XX    XX    XX    XX    XX                XX    XX    XX    XX    XX
   ctl   alt   met   sft   XX                XX    @prev vold  volu  @next
   XX    ralt  XX    XX    XX          XX    XX    XX    XX    XX    XX
@@ -118,6 +123,7 @@
 )
 
 (deflayer num
+  _     _     _     _     _    _   _   _    _     _     _     _     _
   ^     7      8    9     /                 XX    XX    XX    XX    XX
   =     1     2     3     *                 XX    sft   met   alt   ctl
   .     4     5     6     +           XX    XX    XX    XX    ralt  XX
@@ -126,6 +132,7 @@
 )
 
 (deflayer sym
+  _     _     _     _     _    _   _   _    _     _     _     _     _
   ~     {     }     &     \\                XX    XX    XX    XX    XX
   :     \(    \)    ;     @                 XX    sft   met   alt   ctl
   %     [     ]     $     |           XX    XX    XX    XX    ralt  XX
@@ -134,7 +141,8 @@
 )
 
 (deflayer funl
-  f12   f7    f8    f9    sysrq              XX    XX    XX    XX    XX
+  _     _     _     _     _     _   _   _    _     _     _     _     _
+  f12   f7    f8    f9    prnt               XX    XX    XX    XX    XX
   f11   f1    f2    f3    slck               XX    sft   met   alt   ctl
   f10   f4    f5    f6    pause        XX    XX    XX    XX    ralt  XX
               comp  spc   tab    XX    XX    XX    XX    XX
