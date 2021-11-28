@@ -63,9 +63,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             case MEDIA:
                 // Volume control
                 if (clockwise) {
-                    tap_code(KC_VOLU);
+                    tap_code(KC__VOLUP);
                 } else {
-                    tap_code(KC_VOLD);
+                    tap_code(KC__VOLDOWN);
                 }
                 break;
             case MOUSE:

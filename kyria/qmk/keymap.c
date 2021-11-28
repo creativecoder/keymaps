@@ -92,9 +92,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [MEDIA] = LAYOUT_kyria_3x5(
       RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
-      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        U_NU,    KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, U_NA,                                        U_NU,    KC_MPRV, KC__VOLDOWN, KC__VOLUP, KC_MNXT,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,
-                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC_MUTE, KC_MUTE
+                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC__MUTE, KC__MUTE
     ),
     [NUM] = LAYOUT_kyria_3x5(
       KC_CIRC, KC_7,    KC_8,    KC_9,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
