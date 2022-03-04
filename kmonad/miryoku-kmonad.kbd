@@ -43,7 +43,7 @@
 (defalias
   rt1 (tap-hold-next-release 200 ent (layer-toggle sym))
   rt2 (tap-hold-next-release 200 bspc (layer-toggle num))
-  rt3 (tap-hold-next-release 200 sft (layer-toggle funl))
+  rt3 (tap-hold-next-release 200 (around-next sft) (layer-toggle funl))
   rt4 (layer-toggle navr)
   rt5 (layer-toggle shct)
 )
@@ -58,7 +58,7 @@
 )
 
 (defalias
-  cut M-z
+  cut M-x
   copy M-c
   pste M-v
   undo M-z
@@ -80,7 +80,7 @@
   cpysrh #(@copy M-spc P200 d d g spc @pste ent esc)
   cpyuri #(@copy M-spc P200 @pste ent)
   cpyit (tap-hold 200 @cpysrh @cpyuri)
-  cpyurl #(M-l @copy P100 esc)
+  cpyurl #(M-l P100 @copy P100 esc)
   duptab #(M-l @copy M-t @pste ent)
   url (tap-hold 200 @cpyurl @duptab)
   emicns C-A-M-e
