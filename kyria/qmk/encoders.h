@@ -45,13 +45,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case NAV:
-                // Up/down
-                if (clockwise) {
-                    tap_code(KC_DOWN);
-                } else {
-                    tap_code(KC_UP);
-                }
-                break;
             case SHCTS:
                 // Select next/previous tab
                 if (clockwise) {
