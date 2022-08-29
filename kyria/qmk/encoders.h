@@ -21,9 +21,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             case NUM:
                 // Select next/previous window
                 if (clockwise) {
-                    tap_code16(LGUI(KC_GRV));
+                    tap_code16(LCTL(KC_GRV));
                 } else {
-                    tap_code16(LSG(KC_GRV));
+                    tap_code16(S(LCTL(KC_GRV)));
                 }
                 break;
             case FUN:
@@ -48,9 +48,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             case SHCTS:
                 // Select next/previous tab
                 if (clockwise) {
-                    tap_code16(LSG(KC_RBRC));
+                    tap_code16(S(LCTL(KC_RBRC)));
                 } else {
-                    tap_code16(LSG(KC_LBRC));
+                    tap_code16(S(LCTL(KC_LBRC)));
                 }
                 break;
             case MEDIA:
