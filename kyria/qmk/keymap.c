@@ -61,7 +61,7 @@ uint8_t mod_state;
 #define INSTSND KC_LGUI
 
 enum custom_keycodes {
-    CAPSWRD = SAFE_RANGE,
+    CAPSWORD = SAFE_RANGE,
     CPY_URL,
     CPY_GO,
     CPY_SRH,
@@ -80,43 +80,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_ENT,            LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC),   LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_LSFT),  KC_ENT
     ),
     [NAV] = LAYOUT_kyria_3x5(
-      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
-      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        CAPSWRD, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
+      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        CAPSWORD,KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  XCASE,   KC_HOME, KC_PGDN, KC_PGUP, KC_END,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
-      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    INSTSND, QT_RPLY, CLIPBRD,
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    INSTSND, QT_RPLY, CLIPBRD,
       KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRH, VIM_WQ,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [MEDIA] = LAYOUT_kyria_3x5(
-      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
-      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        U_NU,    KC_MPRV, KC__VOLDOWN, KC__VOLUP, KC_MNXT,
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
+      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        U_NU,    KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,
-                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC__MUTE, KC__MUTE
+                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC_MUTE, KC_MUTE
     ),
     [NUM] = LAYOUT_kyria_3x5(
-      KC_CIRC, KC_9,    KC_8,    KC_7,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
+      KC_CIRC, KC_9,    KC_8,    KC_7,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
       KC_EQL,  KC_3,    KC_2,    KC_1,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
       KC_DOT,  KC_6,    KC_5,    KC_4,    KC_PLUS, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_EXLM, KC_0,    KC_MINS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [SYM] = LAYOUT_kyria_3x5(
-      KC_TILD, KC_LCBR, KC_RCBR, KC_AMPR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
+      KC_TILD, KC_LCBR, KC_RCBR, KC_AMPR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
       KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, KC_AT,                                       U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
       KC_PERC, KC_LBRC, KC_RBRC, KC_DLR,  KC_PIPE, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_HASH, KC_GRV,  KC_UNDS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [FUN] = LAYOUT_kyria_3x5(
-      KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR,                                     U_NA,    U_NA,    U_NA,    U_NA,    RESET,
-      KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-      KC_F10,  KC_F4,   KC_F5,   KC_F6,   KC_SLCK, KC_DEL,  KC_ENT,  U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+      KC_F12,  KC_F9,   KC_F8,   KC_F7,   KC_PSCR,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
+      KC_F11,  KC_F3,   KC_F2,   KC_F1,   KC_PAUS,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
+      KC_F10,  KC_F6,   KC_F5,   KC_F4,   KC_SCRL, KC_DEL,  KC_ENT,  U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_APP,  KC_SPC,  KC_TAB,  KC_BSPC, U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [MOUSE] = LAYOUT_kyria_3x5(
-      RESET,   U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
       KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        U_NU,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,    KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
@@ -155,10 +155,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
 
         // Casemodes
-        case CAPSWRD:
+        case CAPSWORD:
             if (record->event.pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
-                    tap_code(KC_CAPSLOCK);
+                    tap_code(KC_CAPS_LOCK);
                     return true;
                 } else {
                     enable_caps_word();
