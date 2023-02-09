@@ -25,7 +25,7 @@ uint8_t mod_state;
 
 #include "layout.h"
 
-#include "casemodes.h"  // https://github.com/andrewjrae/kyria-keymap#case-modes
+#include "casemodes.h" // https://github.com/andrewjrae/kyria-keymap#case-modes
 
 #ifdef COMBO_ENABLE
 #    include "g/keymap_combo.h"
@@ -43,9 +43,8 @@ uint8_t mod_state;
 #ifdef OLED_ENABLE
 #    include "oled.h"
 #endif
-
-#define U_NA KC_NO  // present but not available for use
-#define U_NU KC_NO  // available but not used
+#define U_NA KC_NO // present but not available for use
+#define U_NU KC_NO // available but not used
 
 #define U_RDO S(LCTL(KC_Z))
 #define U_PST LCTL(KC_V)
@@ -106,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYM] = LAYOUT_kyria_3x5(
       KC_TILD, KC_LCBR, KC_RCBR, KC_AMPR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
       KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, KC_AT,                                       U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-      KC_PERC, KC_LBRC, KC_RBRC, KC_DLR,  KC_PIPE, U_NU,    U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+      KC_PERC, KC_LBRC, KC_RBRC, KC_DLR,  KC_PIPE, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_HASH, KC_GRV,  KC_UNDS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [FUN] = LAYOUT_kyria_3x5(

@@ -52,6 +52,7 @@
 #define COMBO_TERM 20
 #define COMBO_STRICT_TIMER
 #define COMBO_MUST_TAP_PER_COMBO
+#define COMBO_VARIABLE_LEN
 #endif
 
 #ifdef ENCODER_ENABLE
