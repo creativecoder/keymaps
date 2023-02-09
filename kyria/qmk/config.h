@@ -20,7 +20,7 @@
 #pragma once
 
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 175
+#define TAPPING_TERM 200
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -44,6 +44,9 @@
 // Use `qmk flash -kb splitkb/kyria/rev1 -km creativecoder -e MAKE_TARGET=dfu-split-{left|right}`
 // to flash each side
 #define EE_HANDS
+
+// Make sure keycodes tap duration is long enough to be registered
+#define TAP_CODE_DELAY 25
 
 #ifdef COMBO_ENABLE
 #define COMBO_TERM 20
