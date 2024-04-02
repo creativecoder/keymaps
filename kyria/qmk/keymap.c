@@ -18,7 +18,19 @@
  */
 #include QMK_KEYBOARD_H
 
-enum layers { BASE, FUN, MBO, MEDIA, MOUSE, NAV, NUM, SHCTS, SYM };
+enum layers
+{
+    BASE,
+    FUN,
+    GAME,
+    MBO,
+    MEDIA,
+    MOUSE,
+    NAV,
+    NUM,
+    SHCTS,
+    SYM
+};
 
 // Initialize variable holding the binary representation of active modifiers.
 uint8_t mod_state;
@@ -28,20 +40,20 @@ uint8_t mod_state;
 #include "casemodes.h" // https://github.com/andrewjrae/kyria-keymap#case-modes
 
 #ifdef COMBO_ENABLE
-#    include "g/keymap_combo.h"
-#    include "combos.h"
+#include "g/keymap_combo.h"
+#include "combos.h"
 #endif
 
 #ifdef ENCODER_ENABLE
-#    include "encoders.h"
+#include "encoders.h"
 #endif
 
 #ifdef RGBLIGHT_LAYERS
-#    include "rgb_layers.h"
+#include "rgb_layers.h"
 #endif
 
 #ifdef OLED_ENABLE
-#    include "oled.h"
+#include "oled.h"
 #endif
 #define U_NA KC_NO // present but not available for use
 #define U_NU KC_NO // available but not used
@@ -59,7 +71,8 @@ uint8_t mod_state;
 #define SNIPS LCAG(KC_SPC)
 #define INSTSND KC_LGUI
 
-enum custom_keycodes {
+enum custom_keycodes
+{
     CAPSWORD = SAFE_RANGE,
     CPY_URL,
     CPY_GO,
@@ -92,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [MEDIA] = LAYOUT_kyria_3x5(
       QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
-      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        U_NU,    KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        TG(GAME),KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC_MUTE, KC_MUTE
     ),
@@ -126,152 +139,187 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,   U_NU,    U_NU,    U_NU,    U_NU,    U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
                         U_NU,    KC_BTN2, KC_BTN3, KC_BTN1, U_NU,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
     ),
+    [GAME] = LAYOUT_kyria_3x5(
+      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+      KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
+      KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LCTL, KC_LALT, KC_TAB, LT(MEDIA, KC_ESC), KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
+                        U_NU,    KC_LSFT, KC_SPC,  KC_TAB,  KC_LGUI, LT(NAV, KC_SPC), LT(SYM, KC_ENT), LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), U_NU
+    ),
 };
 
 // clang-format on
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record)
+{
     // Process case modes
-    if (!process_case_modes(keycode, record)) {
+    if (!process_case_modes(keycode, record))
+    {
         return false;
     }
 
     // Store the current modifier state in the variable for later reference
     mod_state = get_mods();
 
-    switch (keycode) {
-        // Mod-tap keys
-        case LT(FUN, KC_LSFT):
-            if (record->tap.count && record->event.pressed) {
-                // Disable one shot shift if already on, otherwise enable it
-                if (get_oneshot_mods() & MOD_MASK_SHIFT) {
-                    del_oneshot_mods(MOD_BIT(KC_LSFT));
-                } else {
-                    set_oneshot_mods(MOD_BIT(KC_LSFT));
-                }
-                return false;
+    switch (keycode)
+    {
+    // Mod-tap keys
+    case LT(FUN, KC_LSFT):
+        if (record->tap.count && record->event.pressed)
+        {
+            // Disable one shot shift if already on, otherwise enable it
+            if (get_oneshot_mods() & MOD_MASK_SHIFT)
+            {
+                del_oneshot_mods(MOD_BIT(KC_LSFT));
             }
-            return true;
-
-        // Casemodes
-        case CAPSWORD:
-            if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    tap_code(KC_CAPS_LOCK);
-                    return true;
-                } else {
-                    enable_caps_word();
-                }
+            else
+            {
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             return false;
-        case XCASE:
-            if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    enable_caps_word();
-                }
+        }
+        return true;
 
-                if ((get_mods() & MOD_BIT(KC_LALT)) == MOD_BIT(KC_LALT)) {
-                    // CamelCase
-                    enable_xcase_with(OSM(MOD_LSFT));
-                } else if (get_mods() & MOD_MASK_CTRL) {
-                    // kebab-case
-                    enable_xcase_with(KC_MINS);
-                } else {
-                    // snake_case
-                    enable_xcase_with(KC_UNDS);
-                }
+    // Casemodes
+    case CAPSWORD:
+        if (record->event.pressed)
+        {
+            if (get_mods() & MOD_MASK_SHIFT)
+            {
+                tap_code(KC_CAPS_LOCK);
+                return true;
             }
-            return false;
+            else
+            {
+                enable_caps_word();
+            }
+        }
+        return false;
+    case XCASE:
+        if (record->event.pressed)
+        {
+            if (get_mods() & MOD_MASK_SHIFT)
+            {
+                enable_caps_word();
+            }
 
-        // Custom keycodes
-        case CPY_URL:
-            if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    // Copy current url in browser and open in a new tab
-                    // Temporarily cancel existing modifiers, including both shifts
-                    del_mods(mod_state);
-                    register_code(KC_LCTL);
-                    tap_code(KC_L);
-                    tap_code(KC_C);
-                    tap_code(KC_T);
-                    tap_code(KC_V);
-                    unregister_code(KC_LCTL);
-                    tap_code(KC_ENT);
-                    // Reapplying modifier state so that the held shift key(s) still work
-                    set_mods(mod_state);
-                } else {
-                    // Copy current browser url to clipboard
-                    del_mods(mod_state);
-                    register_code(KC_LCTL);
-                    tap_code(KC_L);
-                    tap_code(KC_C);
-                    unregister_code(KC_LCTL);
-                    SEND_STRING(SS_DELAY(100));
-                    tap_code(KC_ESC);
-                    set_mods(mod_state);
-                }
+            if ((get_mods() & MOD_BIT(KC_LALT)) == MOD_BIT(KC_LALT))
+            {
+                // CamelCase
+                enable_xcase_with(OSM(MOD_LSFT));
             }
-            return false;
-        case CPY_GO:
-            if (record->event.pressed) {
-                // Paste currently highlighted text in browser into a new tab
+            else if (get_mods() & MOD_MASK_CTRL)
+            {
+                // kebab-case
+                enable_xcase_with(KC_MINS);
+            }
+            else
+            {
+                // snake_case
+                enable_xcase_with(KC_UNDS);
+            }
+        }
+        return false;
+
+    // Custom keycodes
+    case CPY_URL:
+        if (record->event.pressed)
+        {
+            if (get_mods() & MOD_MASK_SHIFT)
+            {
+                // Copy current url in browser and open in a new tab
+                // Temporarily cancel existing modifiers, including both shifts
                 del_mods(mod_state);
                 register_code(KC_LCTL);
+                tap_code(KC_L);
                 tap_code(KC_C);
                 tap_code(KC_T);
                 tap_code(KC_V);
                 unregister_code(KC_LCTL);
                 tap_code(KC_ENT);
+                // Reapplying modifier state so that the held shift key(s) still work
                 set_mods(mod_state);
             }
-            return false;
-        case CPY_SRH:
-            if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    // Use Launchbar to go to highlighted url
-                    del_mods(mod_state);
-                    tap_code16(U_CPY);
-                    tap_code(INSTSND);
-                    SEND_STRING(SS_DELAY(200));
-                    tap_code(KC_ENT);
-                    set_mods(mod_state);
-                } else {
-                    // Use Launchbar to search web for highlighted text
-                    del_mods(mod_state);
-                    tap_code16(U_CPY);
-                    tap_code(INSTSND);
-                    SEND_STRING(SS_DELAY(200) SS_TAP(X_TAB) "ddg");
-                    tap_code(KC_ENT);
-                    set_mods(mod_state);
-                }
+            else
+            {
+                // Copy current browser url to clipboard
+                del_mods(mod_state);
+                register_code(KC_LCTL);
+                tap_code(KC_L);
+                tap_code(KC_C);
+                unregister_code(KC_LCTL);
+                SEND_STRING(SS_DELAY(100));
+                tap_code(KC_ESC);
+                set_mods(mod_state);
             }
-            return false;
-        case QT_RPLY:
-            // Quote highlighted text and start a reply in Slack
-            if (record->event.pressed) {
+        }
+        return false;
+    case CPY_GO:
+        if (record->event.pressed)
+        {
+            // Paste currently highlighted text in browser into a new tab
+            del_mods(mod_state);
+            register_code(KC_LCTL);
+            tap_code(KC_C);
+            tap_code(KC_T);
+            tap_code(KC_V);
+            unregister_code(KC_LCTL);
+            tap_code(KC_ENT);
+            set_mods(mod_state);
+        }
+        return false;
+    case CPY_SRH:
+        if (record->event.pressed)
+        {
+            if (get_mods() & MOD_MASK_SHIFT)
+            {
+                // Use Launchbar to go to highlighted url
                 del_mods(mod_state);
                 tap_code16(U_CPY);
-                SEND_STRING(SS_DELAY(200));
-                tap_code16(KC_GT);
-                SEND_STRING(SS_DELAY(200));
-                tap_code16(U_PST);
+                tap_code(INSTSND);
                 SEND_STRING(SS_DELAY(200));
                 tap_code(KC_ENT);
-                SEND_STRING(SS_DELAY(200));
-                tap_code(KC_BSPC);
                 set_mods(mod_state);
             }
-            return false;
-        case VIM_WQ:
-            // Save changes and quit vim
-            if (record->event.pressed) {
+            else
+            {
+                // Use Launchbar to search web for highlighted text
                 del_mods(mod_state);
-                tap_code(KC_ESC);
-                SEND_STRING(":wq");
+                tap_code16(U_CPY);
+                tap_code(INSTSND);
+                SEND_STRING(SS_DELAY(200) SS_TAP(X_TAB) "ddg");
                 tap_code(KC_ENT);
                 set_mods(mod_state);
             }
-            return false;
+        }
+        return false;
+    case QT_RPLY:
+        // Quote highlighted text and start a reply in Slack
+        if (record->event.pressed)
+        {
+            del_mods(mod_state);
+            tap_code16(U_CPY);
+            SEND_STRING(SS_DELAY(200));
+            tap_code16(KC_GT);
+            SEND_STRING(SS_DELAY(200));
+            tap_code16(U_PST);
+            SEND_STRING(SS_DELAY(200));
+            tap_code(KC_ENT);
+            SEND_STRING(SS_DELAY(200));
+            tap_code(KC_BSPC);
+            set_mods(mod_state);
+        }
+        return false;
+    case VIM_WQ:
+        // Save changes and quit vim
+        if (record->event.pressed)
+        {
+            del_mods(mod_state);
+            tap_code(KC_ESC);
+            SEND_STRING(":wq");
+            tap_code(KC_ENT);
+            set_mods(mod_state);
+        }
+        return false;
     }
     return true;
 };
