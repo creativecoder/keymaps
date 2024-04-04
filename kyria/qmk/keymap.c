@@ -140,8 +140,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    KC_BTN2, KC_BTN3, KC_BTN1, U_NU,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
     ),
     [GAME] = LAYOUT_kyria_3x5(
-      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-      KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
+      KC_R,    KC_Q,    KC_W,    KC_E,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+      KC_F,    KC_A,    KC_S,    KC_D,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LCTL, KC_LALT, KC_TAB, LT(MEDIA, KC_ESC), KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
                         U_NU,    KC_LSFT, KC_SPC,  KC_TAB,  KC_LGUI, LT(NAV, KC_SPC), LT(SYM, KC_ENT), LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), U_NU
     ),
