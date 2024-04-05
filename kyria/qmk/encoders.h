@@ -14,79 +14,132 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-bool encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise)
+{
     mod_state = get_mods();
-    if (index == 0) {
-        switch (get_highest_layer(layer_state)) {
-            case NUM:
-                // Select next/previous window
-                if (clockwise) {
-                    tap_code16(LCTL(KC_GRV));
-                } else {
-                    tap_code16(S(LCTL(KC_GRV)));
-                }
-                break;
-            case FUN:
-                // Brightness up/down
-                if (clockwise) {
-                    tap_code(KC_BRIU);
-                } else {
-                    tap_code(KC_BRID);
-                }
-                break;
-            default:
-                if (clockwise) {
-                    tap_code(KC_TAB);
-                } else {
-                    tap_code16(S(KC_TAB));
-                }
-                break;
+    if (index == 0)
+    {
+        switch (get_highest_layer(layer_state))
+        {
+        case NUM:
+            // Select next/previous window
+            if (clockwise)
+            {
+                tap_code16(LCTL(KC_GRV));
+            }
+            else
+            {
+                tap_code16(S(LCTL(KC_GRV)));
+            }
+            break;
+        case FUN:
+            // Brightness up/down
+            if (clockwise)
+            {
+                tap_code(KC_BRIU);
+            }
+            else
+            {
+                tap_code(KC_BRID);
+            }
+            break;
+        case MUSIC:
+            if (clockwise)
+            {
+                tap_code(KC_RIGHT);
+            }
+            else
+            {
+                tap_code(KC_LEFT);
+            }
+            break;
+        default:
+            if (clockwise)
+            {
+                tap_code(KC_TAB);
+            }
+            else
+            {
+                tap_code16(S(KC_TAB));
+            }
+            break;
         }
-    } else if (index == 1) {
-        switch (get_highest_layer(layer_state)) {
-            case NAV:
-            case SHCTS:
-                // Select next/previous tab
-                if (clockwise) {
-                    tap_code16(S(LCTL(KC_RBRC)));
-                } else {
-                    tap_code16(S(LCTL(KC_LBRC)));
+    }
+    else if (index == 1)
+    {
+        switch (get_highest_layer(layer_state))
+        {
+        case NAV:
+        case SHCTS:
+            // Select next/previous tab
+            if (clockwise)
+            {
+                tap_code16(S(LCTL(KC_RBRC)));
+            }
+            else
+            {
+                tap_code16(S(LCTL(KC_LBRC)));
+            }
+            break;
+        case MEDIA:
+            // Volume control
+            if (clockwise)
+            {
+                tap_code(KC_VOLU);
+            }
+            else
+            {
+                tap_code(KC_VOLD);
+            }
+            break;
+        case MOUSE:
+            // Mouse scroll up/down
+            if (clockwise)
+            {
+                tap_code(KC_WH_U);
+            }
+            else
+            {
+                tap_code(KC_WH_D);
+            }
+            break;
+        case MUSIC:
+            if (clockwise)
+            {
+                tap_code16(LALT(KC_RBRC));
+            }
+            else
+            {
+                tap_code16(LALT(KC_LBRC));
+            }
+            break;
+        default:
+            // Scrolling with Page up/Page down
+            if (get_mods() && MOD_MASK_CTRL)
+            {
+                del_mods(mod_state);
+                if (clockwise)
+                {
+                    tap_code(KC_DOWN);
                 }
-                break;
-            case MEDIA:
-                // Volume control
-                if (clockwise) {
-                    tap_code(KC_VOLU);
-                } else {
-                    tap_code(KC_VOLD);
+                else
+                {
+                    tap_code(KC_UP);
                 }
-                break;
-            case MOUSE:
-                // Mouse scroll up/down
-                if (clockwise) {
-                    tap_code(KC_WH_U);
-                } else {
-                    tap_code(KC_WH_D);
+                set_mods(mod_state);
+            }
+            else
+            {
+                if (clockwise)
+                {
+                    tap_code(KC_PGDN);
                 }
-                break;
-            default:
-                // Scrolling with Page up/Page down
-                if (get_mods() && MOD_MASK_CTRL) {
-                    del_mods(mod_state);
-                    if (clockwise) {
-                        tap_code(KC_DOWN);
-                    } else {
-                        tap_code(KC_UP);
-                    }
-                    set_mods(mod_state);
-                } else {
-                    if (clockwise) {
-                        tap_code(KC_PGDN);
-                    } else {
-                        tap_code(KC_PGUP);
-                    }
+                else
+                {
+                    tap_code(KC_PGUP);
                 }
-                break;
+            }
+            break;
         }
     }
     return false;

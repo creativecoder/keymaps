@@ -25,6 +25,7 @@ enum layers
     GAME,
     MBO,
     MEDIA,
+    MUSIC,
     MOUSE,
     NAV,
     NUM,
@@ -77,8 +78,11 @@ enum custom_keycodes
     CPY_URL,
     CPY_GO,
     CPY_SRH,
+    DBLARR,
     INSDMAC,
+    NOTES,
     QT_RPLY,
+    SNGARR,
     VIM_WQ,
     XCASE,
 };
@@ -87,10 +91,10 @@ enum custom_keycodes
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_kyria_3x5(
-      KC_Q,              KC_W,              KC_F,              KC_P,              KC_B,                                                                                           KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,
-      LGUI_T(KC_A),      LALT_T(KC_R),      LCTL_T(KC_S),      LSFT_T(KC_T),      KC_G,                                                                                           KC_M,              RSFT_T(KC_N),      RCTL_T(KC_E),      RALT_T(KC_I),      RGUI_T(KC_O),
-      KC_Z,              ALGR_T(KC_X),      KC_C,              KC_D,              KC_V,              LT(FUN, KC_DEL),   LT(SYM, KC_ENT),    LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,              KC_H,              KC_COMM,           KC_DOT,            KC_SLSH,
-                                            KC_ENT,            LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC),   LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_LSFT),  KC_ENT
+      KC_Q,         KC_W,         KC_F,         KC_P,              KC_B,                                                                                       KC_J,             KC_L,             KC_U,          KC_Y,         KC_QUOT,
+      LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T),      KC_G,                                                                                       KC_M,             RSFT_T(KC_N),     RCTL_T(KC_E),  RALT_T(KC_I), RGUI_T(KC_O),
+      KC_Z,         ALGR_T(KC_X), KC_C,         KC_D,              KC_V,            LT(FUN, KC_DEL),   LT(SYM, KC_ENT),  LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,             KC_H,             KC_COMM,       KC_DOT,       KC_SLSH,
+                                  NOTES,        LT(MEDIA, KC_ESC), LT(NAV, KC_SPC), LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), KC_ENT
     ),
     [NAV] = LAYOUT_kyria_3x5(
       QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
@@ -105,16 +109,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [MEDIA] = LAYOUT_kyria_3x5(
-      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
-      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        TG(GAME),KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
-      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    U_NU,
-                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY, KC_MUTE, KC_MUTE
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        RGB_TOG,  RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
+      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, TG(MUSIC),                                   TG(GAME), KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,     U_NU,    U_NU,    U_NU,    U_NU,
+                        U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY,  KC_MUTE, KC_MUTE
     ),
     [NUM] = LAYOUT_kyria_3x5(
       KC_CIRC, KC_9,    KC_8,    KC_7,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
       KC_EXLM, KC_3,    KC_2,    KC_1,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-      KC_DOT,  KC_6,    KC_5,    KC_4,    KC_PLUS, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
-                        U_NU,    KC_EQL,  KC_0,    KC_MINS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
+      KC_DOT,  KC_6,    KC_5,    KC_4,    KC_PLUS, KC_SPC,  DBLARR,  U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+                        U_NU,    KC_EQL,  KC_0,    KC_MINS, SNGARR,  U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [SYM] = LAYOUT_kyria_3x5(
       KC_TILD, KC_LCBR, KC_RCBR, KC_AMPR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
@@ -141,10 +145,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    KC_BTN2, KC_BTN3, KC_BTN1, U_NU,    U_NU,    KC_BTN1, KC_BTN3, KC_BTN2, U_NU
     ),
     [GAME] = LAYOUT_kyria_3x5(
-      KC_R,    KC_Q,    KC_W,    KC_E,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-      KC_F,    KC_A,    KC_S,    KC_D,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
+      KC_R,    KC_Q,    KC_W,    KC_E,    KC_T,                                                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+      KC_F,    KC_A,    KC_S,    KC_D,    KC_G,                                                 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LCTL, KC_LALT, KC_TAB, LT(MEDIA, KC_ESC), KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
                         U_NU,    KC_LSFT, KC_SPC,  KC_TAB,  KC_LGUI, LT(NAV, KC_SPC), LT(SYM, KC_ENT), LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), U_NU
+    ),
+    [MUSIC] = LAYOUT_kyria_3x5(
+      KC_Q,         KC_SCLN,         KC_S,         KC_8,         KC_T,                                                                                        KC_EQL,           KC_E,             KC_F,          KC_G,         KC_Y,
+      LGUI_T(KC_V), LALT_T(KC_5),    LCTL_T(KC_6), LSFT_T(KC_7), KC_F,                                                                                        KC_0,             RSFT_T(KC_A),     RCTL_T(KC_B),  RALT_T(KC_C), RGUI_T(KC_D),
+      KC_DOT,       ALGR_T(KC_COMM), KC_SLSH,      KC_4,         KC_I,            LT(FUN, KC_QUOT),   LT(SYM, KC_BSLS), LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_MINS,          KC_R,             KC_O,          KC_L,         KC_U,
+                                     TG(MUSIC),    KC_ESC,       LT(NAV, KC_SPC), LT(SHCTS, KC_LBRC), LT(NUM, KC_RBRC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), KC_ENT
     ),
 };
 
@@ -179,6 +189,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             return false;
         }
         return true;
+
+    // Turn off music layer when escape is pressed
+    case LT(MEDIA, KC_ESC):
+    case KC_ESC:
+        if (record->event.pressed && IS_LAYER_ON(MUSIC))
+        {
+            layer_off(MUSIC);
+            tap_code(KC_ESC);
+            return false;
+        }
+        return true;
+
+    // Turn on music layer and Dorico note entry
+    case NOTES:
+        if (record->event.pressed)
+        {
+            if (IS_LAYER_OFF(MUSIC))
+            {
+                layer_on(MUSIC);
+            }
+
+            del_mods(mod_state);
+            tap_code16(LSFT(KC_N));
+            set_mods(mod_state);
+        }
+        return false;
 
     // Casemodes
     case CAPSWORD:
@@ -297,6 +333,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             }
         }
         return false;
+    case DBLARR:
+        if (record->event.pressed)
+        {
+            del_mods(mod_state);
+            SEND_STRING("=>");
+            set_mods(mod_state);
+        }
+        return false;
     case INSDMAC:
         // Tap the instant send key twice to send selection to Launchbar
         if (record->event.pressed)
@@ -322,6 +366,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             tap_code(KC_ENT);
             SEND_STRING(SS_DELAY(200));
             tap_code(KC_BSPC);
+            set_mods(mod_state);
+        }
+        return false;
+    case SNGARR:
+        if (record->event.pressed)
+        {
+            del_mods(mod_state);
+            SEND_STRING("->");
             set_mods(mod_state);
         }
         return false;
