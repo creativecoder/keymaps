@@ -77,6 +77,7 @@ enum custom_keycodes
     CPY_URL,
     CPY_GO,
     CPY_SRH,
+    INSDMAC,
     QT_RPLY,
     VIM_WQ,
     XCASE,
@@ -98,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
-      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    INSTSND, QT_RPLY, CLIPBRD,
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    INSDMAC, QT_RPLY, CLIPBRD,
       KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRH, VIM_WQ,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
@@ -111,9 +112,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUM] = LAYOUT_kyria_3x5(
       KC_CIRC, KC_9,    KC_8,    KC_7,    KC_SLSH,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
-      KC_EQL,  KC_3,    KC_2,    KC_1,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
+      KC_EXLM, KC_3,    KC_2,    KC_1,    KC_ASTR,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
       KC_DOT,  KC_6,    KC_5,    KC_4,    KC_PLUS, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
-                        U_NU,    KC_EXLM, KC_0,    KC_MINS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
+                        U_NU,    KC_EQL,  KC_0,    KC_MINS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [SYM] = LAYOUT_kyria_3x5(
       KC_TILD, KC_LCBR, KC_RCBR, KC_AMPR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
@@ -276,6 +277,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 del_mods(mod_state);
                 tap_code16(U_CPY);
                 tap_code(INSTSND);
+                SEND_STRING(SS_DELAY(50));
+                tap_code(INSTSND);
                 SEND_STRING(SS_DELAY(200));
                 tap_code(KC_ENT);
                 set_mods(mod_state);
@@ -286,10 +289,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 del_mods(mod_state);
                 tap_code16(U_CPY);
                 tap_code(INSTSND);
+                SEND_STRING(SS_DELAY(50));
+                tap_code(INSTSND);
                 SEND_STRING(SS_DELAY(200) SS_TAP(X_TAB) "ddg");
                 tap_code(KC_ENT);
                 set_mods(mod_state);
             }
+        }
+        return false;
+    case INSDMAC:
+        // Tap the instant send key twice to send selection to Launchbar
+        if (record->event.pressed)
+        {
+            del_mods(mod_state);
+            tap_code(INSTSND);
+            SEND_STRING(SS_DELAY(50));
+            tap_code(INSTSND);
+            set_mods(mod_state);
         }
         return false;
     case QT_RPLY:
