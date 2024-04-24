@@ -70,6 +70,16 @@ bool encoder_update_user(uint8_t index, bool clockwise)
         switch (get_highest_layer(layer_state))
         {
         case NAV:
+            // Zoom in/out
+            if (clockwise)
+            {
+                tap_code16(LCTL(KC_EQL));
+            }
+            else
+            {
+                tap_code16(LCTL(KC_MINS));
+            }
+            break;
         case SHCTS:
             // Select next/previous tab
             if (clockwise)
