@@ -227,7 +227,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             }
             else
             {
-                enable_caps_word();
+                caps_word_on();
             }
         }
         return false;
@@ -236,7 +236,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         {
             if (get_mods() & MOD_MASK_SHIFT)
             {
-                enable_caps_word();
+                caps_word_on();
             }
 
             if ((get_mods() & MOD_BIT(KC_LALT)) == MOD_BIT(KC_LALT))

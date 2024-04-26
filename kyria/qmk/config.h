@@ -45,6 +45,9 @@
 // Make sure keycodes tap duration is long enough to be registered
 #define TAP_CODE_DELAY 25
 
+// Caps Word
+#define CAPS_WORD_INVERT_ON_SHIFT
+
 #ifdef COMBO_ENABLE
 #define COMBO_TERM 100
 #define COMBO_STRICT_TIMER
