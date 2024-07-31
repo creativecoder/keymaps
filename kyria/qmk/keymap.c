@@ -64,7 +64,7 @@ uint8_t mod_state;
 #define U_CPY LCTL(KC_C)
 #define U_CUT LCTL(KC_X)
 #define U_UND LCTL(KC_Z)
-#define EMICONS LCAG(KC_E)
+#define EMICONS C(LSG(KC_E))
 #define SCRNSHT S(LCTL(KC_4))
 #define SCRNCLP LGUI(SCRNSHT)
 #define SCRNREC S(LCTL(KC_5))
@@ -91,9 +91,9 @@ enum custom_keycodes
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_kyria_3x5(
-      KC_Q,         KC_W,         KC_F,         KC_P,              KC_B,                                                                                       KC_J,             KC_L,             KC_U,          KC_Y,         KC_QUOT,
-      LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T),      KC_G,                                                                                       KC_M,             RSFT_T(KC_N),     RCTL_T(KC_E),  RALT_T(KC_I), RGUI_T(KC_O),
-      KC_Z,         ALGR_T(KC_X), KC_C,         KC_D,              KC_V,            LT(FUN, KC_DEL),   LT(SYM, KC_ENT),  LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,             KC_H,             KC_COMM,       KC_DOT,       KC_SLSH,
+      KC_Q,         KC_W,         KC_F,         KC_P,              KC_B,                                                                                       KC_J,             KC_L,             KC_U,           KC_Y,           KC_QUOT,
+      LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T),      KC_G,                                                                                       KC_M,             LSFT_T(KC_N),     LCTL_T(KC_E),   LALT_T(KC_I),   LGUI_T(KC_O),
+      RGUI_T(KC_Z), ALGR_T(KC_X), RCTL_T(KC_C), RSFT_T(KC_D),      KC_V,            LT(FUN, KC_DEL),   LT(SYM, KC_ENT),  LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,             RSFT_T(KC_H),     RCTL_T(KC_COMM),ALGR_T(KC_DOT), RGUI_T(KC_SLSH),
                                   NOTES,        LT(MEDIA, KC_ESC), LT(NAV, KC_SPC), LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), KC_ENT
     ),
     [NAV] = LAYOUT_kyria_3x5(

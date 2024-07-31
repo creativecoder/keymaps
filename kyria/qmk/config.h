@@ -20,13 +20,13 @@
 #pragma once
 
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 200
+#define TAPPING_TERM 175
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define QUICK_TAP_TERM 0
 
 // Apply the modifier on keys that are tapped during a short hold of a modtap
-#define PERMISSIVE_HOLD
+/* #define PERMISSIVE_HOLD */
 
 // Auto Shift
 #define NO_AUTO_SHIFT_ALPHA
@@ -80,8 +80,7 @@
 #undef RGBLED_SPLIT
 #define RGBLED_SPLIT \
 	{                  \
-		8, 8             \
-	}
+			8, 8}
 #undef RGBLIGHT_LED_COUNT
 #define RGBLIGHT_LED_COUNT 16
 #define RGBLIGHT_SLEEP
