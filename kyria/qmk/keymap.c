@@ -71,6 +71,7 @@ uint8_t mod_state;
 #define CLIPBRD LCA(KC_BSLS)
 #define SNIPS LCAG(KC_SPC)
 #define INSTSND KC_LGUI
+#define SYMBLS C(LGUI(KC_SPACE))
 
 enum custom_keycodes
 {
@@ -103,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
-      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_NU,    U_NU,    INSDMAC, QT_RPLY, CLIPBRD,
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        SYMBLS,  U_NU,    INSDMAC, QT_RPLY, CLIPBRD,
       KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRH, VIM_WQ,
       U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
