@@ -122,9 +122,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    KC_EQL,  KC_0,    KC_MINS, SNGARR,  U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [SYM] = LAYOUT_kyria_3x5(
-      KC_TILD, KC_LCBR, KC_RCBR, KC_AMPR, KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
+      KC_TILD, KC_LCBR, KC_RCBR, KC_DLR,  KC_BSLS,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
       KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, KC_AT,                                       U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-      KC_PERC, KC_LBRC, KC_RBRC, KC_DLR,  KC_PIPE, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+      KC_PERC, KC_LBRC, KC_RBRC, KC_AMPR, KC_PIPE, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_HASH, KC_GRV,  KC_UNDS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [FUN] = LAYOUT_kyria_3x5(
