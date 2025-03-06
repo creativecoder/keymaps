@@ -54,6 +54,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(4, layer_state_cmp(state, MOUSE));
     rgblight_set_layer_state(5, layer_state_cmp(state, NUM));
     rgblight_set_layer_state(6, layer_state_cmp(state, SYM));
-    rgblight_set_layer_state(7, layer_state_cmp(state, FUN));
+    rgblight_set_layer_state(7, layer_state_cmp(state, FUNC));
     return state;
 }

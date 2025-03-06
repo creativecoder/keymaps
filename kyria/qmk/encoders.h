@@ -32,7 +32,7 @@ bool encoder_update_user(uint8_t index, bool clockwise)
                 tap_code16(S(LCTL(KC_GRV)));
             }
             break;
-        case FUN:
+        case FUNC:
             // Brightness up/down
             if (clockwise)
             {

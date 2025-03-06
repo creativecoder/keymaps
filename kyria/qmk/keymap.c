@@ -21,7 +21,7 @@
 enum layers
 {
     BASE,
-    FUN,
+    FUNC,
     GAME,
     MBO,
     MEDIA,
@@ -94,8 +94,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_kyria_3x5(
       KC_Q,         KC_W,         KC_F,         KC_P,              KC_B,                                                                                       KC_J,             KC_L,             KC_U,           KC_Y,           KC_QUOT,
       LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T),      KC_G,                                                                                       KC_M,             LSFT_T(KC_N),     LCTL_T(KC_E),   LALT_T(KC_I),   LGUI_T(KC_O),
-      RGUI_T(KC_Z), ALGR_T(KC_X), RCTL_T(KC_C), RSFT_T(KC_D),      KC_V,            LT(FUN, KC_DEL),   LT(SYM, KC_ENT),  LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,             RSFT_T(KC_H),     RCTL_T(KC_COMM),ALGR_T(KC_DOT), RGUI_T(KC_SLSH),
-                                  NOTES,        LT(MEDIA, KC_ESC), LT(NAV, KC_SPC), LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), KC_ENT
+      RGUI_T(KC_Z), ALGR_T(KC_X), RCTL_T(KC_C), RSFT_T(KC_D),      KC_V,            LT(FUNC, KC_DEL),   LT(SYM, KC_ENT),  LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,             RSFT_T(KC_H),     RCTL_T(KC_COMM),ALGR_T(KC_DOT), RGUI_T(KC_SLSH),
+                                  NOTES,        LT(MEDIA, KC_ESC), LT(NAV, KC_SPC), LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUNC, KC_LSFT), KC_ENT
     ),
     [NAV] = LAYOUT_kyria_3x5(
       QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
@@ -127,10 +127,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_PERC, KC_LBRC, KC_RBRC, KC_AMPR, KC_PIPE, KC_SPC,  U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_HASH, KC_GRV,  KC_UNDS, U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
-    [FUN] = LAYOUT_kyria_3x5(
-      KC_F12,  KC_F9,   KC_F8,   KC_F7,   KC_PSCR,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
-      KC_F11,  KC_F3,   KC_F2,   KC_F1,   KC_PAUS,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-      KC_F10,  KC_F6,   KC_F5,   KC_F4,   KC_SCRL, KC_DEL,  KC_ENT,  U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
+    [FUNC] = LAYOUT_kyria_3x5(
+      KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR,                                     U_NA,    U_NA,    U_NA,    U_NA,    QK_RBT,
+      KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS,                                     U_NA,    KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
+      KC_F10,  KC_F4,   KC_F5,   KC_F6,   KC_SCRL, KC_DEL,  KC_ENT,  U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_ALGR, U_NA,
                         U_NU,    KC_APP,  KC_SPC,  KC_TAB,  KC_BSPC, U_NA,    U_NA,    U_NA,    U_NA,    U_NU
     ),
     [MOUSE] = LAYOUT_kyria_3x5(
@@ -149,13 +149,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_R,    KC_Q,    KC_W,    KC_E,    KC_T,                                                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
       KC_F,    KC_A,    KC_S,    KC_D,    KC_G,                                                 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LCTL, KC_LALT, KC_TAB, LT(MEDIA, KC_ESC), KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-                        U_NU,    KC_LSFT, KC_SPC,  KC_TAB,  KC_LGUI, LT(NAV, KC_SPC), LT(SYM, KC_ENT), LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), U_NU
+                        U_NU,    KC_LSFT, KC_SPC,  KC_TAB,  KC_LGUI, LT(NAV, KC_SPC), LT(SYM, KC_ENT), LT(NUM, KC_BSPC), LT(FUNC, KC_LSFT), U_NU
     ),
     [MUSIC] = LAYOUT_kyria_3x5(
       KC_Q,         KC_SCLN,         KC_S,         KC_8,         KC_T,                                                                                        KC_EQL,           KC_E,             KC_F,          KC_G,         KC_Y,
       LGUI_T(KC_V), LALT_T(KC_5),    LCTL_T(KC_6), LSFT_T(KC_7), KC_F,                                                                                        KC_0,             RSFT_T(KC_A),     RCTL_T(KC_B),  RALT_T(KC_C), RGUI_T(KC_D),
-      KC_DOT,       ALGR_T(KC_COMM), KC_SLSH,      KC_4,         KC_I,            LT(FUN, KC_QUOT),   LT(SYM, KC_BSLS), LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_MINS,          KC_R,             KC_O,          KC_L,         KC_U,
-                                     TG(MUSIC),    KC_ESC,       LT(NAV, KC_SPC), LT(SHCTS, KC_LBRC), LT(NUM, KC_RBRC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUN, KC_LSFT), KC_ENT
+      KC_DOT,       ALGR_T(KC_COMM), KC_SLSH,      KC_4,         KC_I,            LT(FUNC, KC_QUOT),   LT(SYM, KC_BSLS), LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_MINS,          KC_R,             KC_O,          KC_L,         KC_U,
+                                     TG(MUSIC),    KC_ESC,       LT(NAV, KC_SPC), LT(SHCTS, KC_LBRC), LT(NUM, KC_RBRC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUNC, KC_LSFT), KC_ENT
     ),
 };
 
@@ -175,7 +175,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     switch (keycode)
     {
     // Mod-tap keys
-    case LT(FUN, KC_LSFT):
+    case LT(FUNC, KC_LSFT):
         if (record->tap.count && record->event.pressed)
         {
             // Disable one shot shift if already on, otherwise enable it
