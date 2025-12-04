@@ -17,19 +17,32 @@
 bool encoder_update_user(uint8_t index, bool clockwise)
 {
     mod_state = get_mods();
+
     if (index == 0)
     {
+        // Left encoder
         switch (get_highest_layer(layer_state))
         {
         case NUM:
-            // Select next/previous window
+            // Zoom in/out
             if (clockwise)
             {
-                tap_code16(LCTL(KC_GRV));
+                tap_code16(LCTL(KC_EQL));
             }
             else
             {
-                tap_code16(S(LCTL(KC_GRV)));
+                tap_code16(LCTL(KC_MINS));
+            }
+            break;
+        case SYM:
+            // Select next/previous window
+            if (clockwise)
+            {
+                tap_code16(LALT(KC_GRV));
+            }
+            else
+            {
+                tap_code16(S(LALT(KC_GRV)));
             }
             break;
         case FUNC:
@@ -67,28 +80,29 @@ bool encoder_update_user(uint8_t index, bool clockwise)
     }
     else if (index == 1)
     {
+        // Right encoder
         switch (get_highest_layer(layer_state))
         {
         case NAV:
-            // Zoom in/out
-            if (clockwise)
-            {
-                tap_code16(LCTL(KC_EQL));
-            }
-            else
-            {
-                tap_code16(LCTL(KC_MINS));
-            }
-            break;
-        case SHCTS:
             // Select next/previous tab
             if (clockwise)
             {
-                tap_code16(S(LCTL(KC_RBRC)));
+                tap_code16(LCTL(KC_PGDN));
             }
             else
             {
-                tap_code16(S(LCTL(KC_LBRC)));
+                tap_code16(LCTL(KC_PGUP));
+            }
+            break;
+        case SHCTS:
+            // Next/prev workspace
+            if (clockwise)
+            {
+                tap_code16(LGUI(KC_PGDN));
+            }
+            else
+            {
+                tap_code16(LGUI(KC_PGUP));
             }
             break;
         case MEDIA:
@@ -125,7 +139,7 @@ bool encoder_update_user(uint8_t index, bool clockwise)
             break;
         default:
             // Scrolling with Page up/Page down
-            if (get_mods() && MOD_MASK_CTRL)
+            if (get_mods() && MOD_MASK_GUI)
             {
                 del_mods(mod_state);
                 if (clockwise)

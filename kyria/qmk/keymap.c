@@ -64,23 +64,16 @@ uint8_t mod_state;
 #define U_CPY LCTL(KC_C)
 #define U_CUT LCTL(KC_X)
 #define U_UND LCTL(KC_Z)
-#define EMICONS C(LSG(KC_E))
-#define SCRNSHT S(LCTL(KC_4))
-#define SCRNCLP LGUI(SCRNSHT)
-#define SCRNREC S(LCTL(KC_5))
-#define CLIPBRD LCA(KC_BSLS)
-#define SNIPS LCAG(KC_SPC)
-#define INSTSND KC_LGUI
-#define SYMBLS C(LGUI(KC_SPACE))
+#define SCRNREC S(LCA(KC_R))
+#define CLIPBRD LAG(KC_V)
+#define SYMBLS LCAG(KC_C)
 
 enum custom_keycodes
 {
     CAPSWORD = SAFE_RANGE,
     CPY_URL,
     CPY_GO,
-    CPY_SRH,
     DBLARR,
-    INSDMAC,
     NOTES,
     QT_RPLY,
     SNGARR,
@@ -94,8 +87,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_kyria_3x5(
       KC_Q,         KC_W,         KC_F,         KC_P,              KC_B,                                                                                       KC_J,             KC_L,             KC_U,           KC_Y,           KC_QUOT,
       LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T),      KC_G,                                                                                       KC_M,             LSFT_T(KC_N),     LCTL_T(KC_E),   LALT_T(KC_I),   LGUI_T(KC_O),
-      RGUI_T(KC_Z), ALGR_T(KC_X), RCTL_T(KC_C), RSFT_T(KC_D),      KC_V,            LT(FUNC, KC_DEL),   LT(SYM, KC_ENT),  LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,             RSFT_T(KC_H),     RCTL_T(KC_COMM),ALGR_T(KC_DOT), RGUI_T(KC_SLSH),
-                                  NOTES,        LT(MEDIA, KC_ESC), LT(NAV, KC_SPC), LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUNC, KC_LSFT), KC_ENT
+      RGUI_T(KC_Z), ALGR_T(KC_X), RCTL_T(KC_C), RSFT_T(KC_D),      KC_V,            LT(FUNC, KC_DEL),  LT(SYM, KC_ENT),  LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_K,             RSFT_T(KC_H),     RCTL_T(KC_COMM),ALGR_T(KC_DOT), RGUI_T(KC_SLSH),
+                                  KC_LGUI,      LT(MEDIA, KC_ESC), LT(NAV, KC_SPC), LT(SHCTS, KC_TAB), LT(NUM, KC_BSPC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUNC, KC_LSFT), KC_ENT
     ),
     [NAV] = LAYOUT_kyria_3x5(
       QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
@@ -104,15 +97,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [SHCTS] = LAYOUT_kyria_3x5(
-      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        SYMBLS,  U_NU,    INSDMAC, QT_RPLY, CLIPBRD,
-      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  CPY_SRH, VIM_WQ,
-      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  EMICONS, SCRNSHT, SCRNCLP, SCRNREC, SNIPS,
+      QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        SYMBLS,  U_NU,    U_NU,    QT_RPLY, CLIPBRD,
+      KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,                                        KC_SPC,  CPY_URL, CPY_GO,  U_NU,    VIM_WQ,
+      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    KC_TAB,  KC_ESC,  U_NU,    KC_PSCR, SCRNREC, U_NU,    U_NA,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    KC_SPC,  KC_ENT,  KC_DEL,  KC_BSPC, U_NU
     ),
     [MEDIA] = LAYOUT_kyria_3x5(
       QK_RBT,  U_NA,    U_NA,    U_NA,    U_NA,                                        UG_TOGG,  UG_NEXT, UG_HUEU, UG_SATU, UG_VALU,
       KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, TG(MUSIC),                                   TG(GAME), KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
-      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    U_NU,     U_NU,    U_NU,    U_NU,    U_NU,
+      U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    U_NU,    TG(MUSIC),U_NU,    U_NU,    U_NU,    U_NU,
                         U_NU,    U_NA,    U_NA,    U_NA,    U_NA,    U_NU,    KC_MSTP, KC_MPLY,  KC_MUTE, KC_MUTE
     ),
     [NUM] = LAYOUT_kyria_3x5(
@@ -154,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MUSIC] = LAYOUT_kyria_3x5(
       KC_Q,         KC_SCLN,         KC_S,         KC_8,         KC_T,                                                                                        KC_EQL,           KC_E,             KC_F,          KC_G,         KC_Y,
       LGUI_T(KC_V), LALT_T(KC_5),    LCTL_T(KC_6), LSFT_T(KC_7), KC_F,                                                                                        KC_0,             RSFT_T(KC_A),     RCTL_T(KC_B),  RALT_T(KC_C), RGUI_T(KC_D),
-      KC_DOT,       ALGR_T(KC_COMM), KC_SLSH,      KC_4,         KC_I,            LT(FUNC, KC_QUOT),   LT(SYM, KC_BSLS), LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_MINS,          KC_R,             KC_O,          KC_L,         KC_U,
+      KC_DOT,       ALGR_T(KC_COMM), KC_SLSH,      KC_4,         KC_I,            LT(FUNC, KC_QUOT),  LT(SYM, KC_BSLS), LT(SHCTS, KC_TAB), LT(MEDIA, KC_ESC), KC_MINS,          KC_R,             KC_O,          KC_L,         KC_U,
                                      TG(MUSIC),    KC_ESC,       LT(NAV, KC_SPC), LT(SHCTS, KC_LBRC), LT(NUM, KC_RBRC), LT(NAV, KC_SPC),   LT(SYM, KC_ENT),   LT(NUM, KC_BSPC), LT(FUNC, KC_LSFT), KC_ENT
     ),
 };
@@ -305,51 +298,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             set_mods(mod_state);
         }
         return false;
-    case CPY_SRH:
-        if (record->event.pressed)
-        {
-            if (get_mods() & MOD_MASK_SHIFT)
-            {
-                // Use Launchbar to go to highlighted url
-                del_mods(mod_state);
-                tap_code16(U_CPY);
-                tap_code(INSTSND);
-                SEND_STRING(SS_DELAY(50));
-                tap_code(INSTSND);
-                SEND_STRING(SS_DELAY(200));
-                tap_code(KC_ENT);
-                set_mods(mod_state);
-            }
-            else
-            {
-                // Use Launchbar to search web for highlighted text
-                del_mods(mod_state);
-                tap_code16(U_CPY);
-                tap_code(INSTSND);
-                SEND_STRING(SS_DELAY(50));
-                tap_code(INSTSND);
-                SEND_STRING(SS_DELAY(200) SS_TAP(X_TAB) "ddg");
-                tap_code(KC_ENT);
-                set_mods(mod_state);
-            }
-        }
-        return false;
-    case DBLARR:
+     case DBLARR:
         if (record->event.pressed)
         {
             del_mods(mod_state);
             SEND_STRING("=>");
-            set_mods(mod_state);
-        }
-        return false;
-    case INSDMAC:
-        // Tap the instant send key twice to send selection to Launchbar
-        if (record->event.pressed)
-        {
-            del_mods(mod_state);
-            tap_code(INSTSND);
-            SEND_STRING(SS_DELAY(50));
-            tap_code(INSTSND);
             set_mods(mod_state);
         }
         return false;
