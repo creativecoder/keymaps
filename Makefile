@@ -11,3 +11,9 @@ kyria-right:
 
 doio:
 	qmk flash -kb doio/kb16/rev2 -km $(km)
+
+# Requires sudo
+.PHONY: keyd
+keyd:
+	cp keyd/* /etc/keyd/
+	/usr/local/bin/keyd reload
